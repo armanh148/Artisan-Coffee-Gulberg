@@ -8,7 +8,6 @@ import KopagShopsSection from './components/kopag/KopagShopsSection';
 import KopagContactSection from './components/kopag/KopagContactSection';
 import KopagFaqSection from './components/kopag/KopagFaqSection';
 import KopagFooter from './components/kopag/KopagFooter';
-import KopagBottomNav from './components/kopag/KopagBottomNav';
 
 import ReservationModal from './components/taraq/ReservationModal';
 import ProductModal from './components/ProductModal';
@@ -217,16 +216,17 @@ export default function App() {
         onOpenLocation={() => setIsLocationModalOpen(true)}
       />
 
-      {/* Mobile Bottom Navigation Bar (Menu, Call, Center Roastery Logo, WhatsApp, Bag) */}
-      <KopagBottomNav
-        cartCount={cartCount}
-        onOpenMenu={() => {
-          const el = document.getElementById('explore-menu-section');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-        onOpenCart={() => setIsCartOpen(true)}
-        onScrollTop={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      />
+      {/* Quick Mobile Floating Cart Button */}
+      {cartCount > 0 && (
+        <button
+          type="button"
+          className="kopag-floating-cart-pill"
+          onClick={() => setIsCartOpen(true)}
+        >
+          <ShoppingBag size={18} />
+          <span>View Order ({cartCount} &bull; Rs. {cartTotal.toLocaleString()})</span>
+        </button>
+      )}
 
       {/* Table Reservation Modal */}
       <ReservationModal
