@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Users, CheckCircle2 } from 'lucide-react';
+import { X, Users, CheckCircle2, User, Phone, Sparkles, ShieldCheck } from 'lucide-react';
 import KopagCustomSelect from '../kopag/KopagCustomSelect';
+import KopagDatePicker from '../kopag/KopagDatePicker';
+import KopagTimePicker from '../kopag/KopagTimePicker';
 
 const GUEST_OPTIONS = [
   { value: '1', label: '1 Person (Solo Work)', sublabel: 'Espresso Bar / Solo Focus Table', badge: 'Solo' },
@@ -18,92 +20,108 @@ export default function ReservationModal({ isOpen, onClose, onConfirm }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [reservationCode, setReservationCode] = useState('');
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const code = `ART-${Math.floor(1000 + Math.random() * 9000)}`;
+    setReservationCode(code);
     setSubmitted(true);
     setTimeout(() => {
-      if (onConfirm) onConfirm({ date, time, guests, type, name, phone });
-      setSubmitted(false);
-      onClose();
-    }, 1500);
+      if (onConfirm) onConfirm({ date, time, guests, type, name, phone, code });
+      setTimeout(() => {
+        setSubmitted(false);
+        onClose();
+      }, 2400);
+    }, 400);
+  };
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
   };
 
   return (
-    <div className="taraq-modal-backdrop" onClick={onClose}>
+    <div className="taraq-modal-backdrop" onClick={handleClose}>
       <div className="taraq-modal-dialog" onClick={(e) => e.stopPropagation()}>
-        <button className="taraq-modal-close" onClick={onClose}>
+        <button className="taraq-modal-close" onClick={handleClose} aria-label="Close dialog">
           <X size={20} />
         </button>
 
         {submitted ? (
           <div className="taraq-modal-success">
-            <CheckCircle2 size={48} color="#238B83" />
+            <div className="success-badge-glow">
+              <CheckCircle2 size={46} strokeWidth={2.5} color="#0D382B" />
+            </div>
             <h3 className="success-title">RESERVATION CONFIRMED!</h3>
             <p className="success-sub">
-              We have reserved your {type.toLowerCase()} for {guests} guests on {date} at {time}.
+              Shukriya <strong>{name || 'Guest'}</strong>! We have reserved your{' '}
+              <strong>{type === 'Table' ? 'Lounge Table' : 'Private Executive Room'}</strong> for{' '}
+              <strong>{guests} guests</strong> on <strong>{date}</strong> at <strong>{time}</strong>.
             </p>
+            {reservationCode && (
+              <div className="reservation-code-pill">
+                <span>Confirmation Pass:</span>
+                <strong>{reservationCode}</strong>
+              </div>
+            )}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="taraq-modal-form">
-            <div className="taraq-section-number">RESERVATION &middot; TARAQ</div>
+            <div className="taraq-section-number">
+              <Sparkles size={12} className="number-sparkle" />
+              <span>ARTISAN SPECIALTY ROASTERY &bull; TABLE CONCIERGE</span>
+            </div>
             <h3 className="taraq-modal-title">RESERVE YOUR SPACE</h3>
             <p className="taraq-modal-sub">
-              Book a quiet table or private executive room for your meeting.
+              Book a quiet espresso table or private boardroom at our flagship roastery lounges.
             </p>
 
+            {/* Reservation Type Toggle */}
             <div className="taraq-form-row">
-              <label className="taraq-form-label">Reservation Type</label>
+              <label className="taraq-form-label">Reservation Experience</label>
               <div className="taraq-type-toggle">
                 <button
                   type="button"
                   className={`type-btn ${type === 'Table' ? 'active' : ''}`}
                   onClick={() => setType('Table')}
                 >
-                  Lounge Table
+                  ☕ Lounge Table
                 </button>
                 <button
                   type="button"
                   className={`type-btn ${type === 'Private Meeting Room' ? 'active' : ''}`}
                   onClick={() => setType('Private Meeting Room')}
                 >
-                  Private Room
+                  🏛️ Private Room
                 </button>
               </div>
             </div>
 
+            {/* Custom Date & Time Row */}
             <div className="taraq-form-grid-2">
-              <div>
+              <div className="form-field-group">
                 <label className="taraq-form-label">Date</label>
-                <div className="input-with-icon">
-                  <Calendar size={16} />
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                    className="taraq-input"
-                  />
-                </div>
+                <KopagDatePicker
+                  id="reservation-date"
+                  value={date}
+                  onChange={(d) => setDate(d)}
+                />
               </div>
 
-              <div>
-                <label className="taraq-form-label">Time</label>
-                <div className="input-with-icon">
-                  <Clock size={16} />
-                  <input
-                    type="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    required
-                    className="taraq-input"
-                  />
-                </div>
+              <div className="form-field-group">
+                <label className="taraq-form-label">Seating Time</label>
+                <KopagTimePicker
+                  id="reservation-time"
+                  value={time}
+                  onChange={(t) => setTime(t)}
+                />
               </div>
             </div>
 
+            {/* Number of Guests */}
             <div className="taraq-form-row">
               <label className="taraq-form-label">Number of Guests</label>
               <KopagCustomSelect
@@ -114,35 +132,42 @@ export default function ReservationModal({ isOpen, onClose, onConfirm }) {
               />
             </div>
 
-
+            {/* Guest Name & Phone */}
             <div className="taraq-form-grid-2">
-              <div>
+              <div className="form-field-group">
                 <label className="taraq-form-label">Your Name</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Alex Sterling"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="taraq-input"
-                />
+                <div className="input-with-icon">
+                  <User size={16} />
+                  <input
+                    type="text"
+                    placeholder="e.g. Arman Khan"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="taraq-input"
+                  />
+                </div>
               </div>
 
-              <div>
+              <div className="form-field-group">
                 <label className="taraq-form-label">Phone / WhatsApp</label>
-                <input
-                  type="tel"
-                  placeholder="+92 300 1234567"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  className="taraq-input"
-                />
+                <div className="input-with-icon">
+                  <Phone size={16} />
+                  <input
+                    type="tel"
+                    placeholder="e.g. 0300 1234567"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    className="taraq-input"
+                  />
+                </div>
               </div>
             </div>
 
-            <button type="submit" className="taraq-submit-btn">
-              Confirm Reservation
+            <button type="submit" className="taraq-submit-btn kopag-reserve-confirm-btn">
+              <ShieldCheck size={18} />
+              <span>Confirm Reservation</span>
             </button>
           </form>
         )}

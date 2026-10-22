@@ -2745,6 +2745,351 @@ html {
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   KOPAG CUSTOM DATE PICKER & TIME PICKER (LUXURY ROASTERY)
+   ========================================================================== */
+.kopag-datepicker-wrap,
+.kopag-timepicker-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.kopag-datepicker-trigger,
+.kopag-timepicker-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #FAF9F6;
+  border: 1.5px solid rgba(13, 56, 43, 0.2);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-family: var(--kopag-font-body, inherit);
+  color: var(--kopag-green, #0D382B);
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.kopag-datepicker-trigger:hover,
+.kopag-timepicker-trigger:hover {
+  background: #FFFFFF;
+  border-color: rgba(13, 56, 43, 0.45);
+}
+
+.kopag-datepicker-trigger.is-open,
+.kopag-timepicker-trigger.is-open {
+  background: #FFFFFF;
+  border-color: var(--kopag-green, #0D382B);
+  box-shadow: 0 0 0 3.5px rgba(13, 56, 43, 0.14);
+  transform: translateY(-1px);
+}
+
+.datepicker-trigger-left,
+.timepicker-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  flex: 1;
+}
+
+.datepicker-icon,
+.timepicker-icon {
+  color: var(--kopag-green, #0D382B);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.datepicker-value,
+.timepicker-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--kopag-green, #0D382B);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timepicker-text-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.timepicker-sub-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green, #0D382B);
+  padding: 2px 6px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.datepicker-chevron,
+.timepicker-chevron {
+  color: var(--kopag-green, #0D382B);
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+
+.datepicker-chevron.rotate,
+.timepicker-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* Calendar Popover */
+.kopag-calendar-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 280px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 18px 42px rgba(13, 56, 43, 0.18), 0 4px 14px rgba(13, 56, 43, 0.08);
+  z-index: 150;
+  animation: kopagSelectSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(13, 56, 43, 0.1);
+}
+
+.calendar-month-label {
+  font-family: var(--kopag-font-display, inherit);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--kopag-green, #0D382B);
+}
+
+.calendar-nav-group {
+  display: flex;
+  gap: 4px;
+}
+
+.calendar-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(13, 56, 43, 0.06);
+  color: var(--kopag-green, #0D382B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.calendar-nav-btn:hover {
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.calendar-weekday {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #8A9791;
+  text-transform: uppercase;
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.calendar-day.empty {
+  height: 32px;
+}
+
+.calendar-day-btn {
+  position: relative;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--kopag-green, #0D382B);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.calendar-day-btn:hover {
+  background: rgba(249, 211, 66, 0.25);
+  color: var(--kopag-green, #0D382B);
+}
+
+.calendar-day-btn.today {
+  border: 1.5px solid #F9D342;
+}
+
+.calendar-day-btn.selected {
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+}
+
+.calendar-day-btn.selected .day-gold-dot {
+  position: absolute;
+  bottom: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #F9D342;
+}
+
+.calendar-quick-footer {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(13, 56, 43, 0.1);
+}
+
+.quick-date-btn {
+  flex: 1;
+  padding: 5px 6px;
+  font-size: 0.72rem;
+  font-weight: 750;
+  background: rgba(13, 56, 43, 0.06);
+  border: none;
+  border-radius: 6px;
+  color: var(--kopag-green, #0D382B);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quick-date-btn:hover {
+  background: #F9D342;
+  color: var(--kopag-green, #0D382B);
+}
+
+/* Time Picker Popover */
+.kopag-timepicker-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  min-width: 250px;
+  max-height: 270px;
+  overflow-y: auto;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 18px 42px rgba(13, 56, 43, 0.18), 0 4px 14px rgba(13, 56, 43, 0.08);
+  z-index: 150;
+  animation: kopagSelectSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timepicker-header {
+  font-size: 0.70rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8A9791;
+  padding: 6px 10px 8px;
+  border-bottom: 1px solid rgba(13, 56, 43, 0.08);
+  margin-bottom: 4px;
+}
+
+.timepicker-slots-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.time-slot-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.time-slot-btn:hover {
+  background: rgba(13, 56, 43, 0.06);
+  transform: translateX(2px);
+}
+
+.time-slot-btn.selected {
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+}
+
+.time-slot-btn.selected .slot-time-text {
+  color: #FFFFFF;
+}
+
+.time-slot-btn.selected .slot-period-text {
+  color: #F9D342;
+}
+
+.slot-text-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slot-time-text {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--kopag-green, #0D382B);
+}
+
+.slot-period-text {
+  font-size: 0.70rem;
+  color: #718096;
+  font-weight: 600;
+}
+
+.slot-check-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #F9D342;
+  color: #0D382B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
 
 .contact-submit-btn {
   background: var(--kopag-green);
