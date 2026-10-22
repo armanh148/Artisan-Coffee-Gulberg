@@ -3850,3 +3850,220 @@ html {
     font-size: 1.45rem;
   }
 }
+
+/* ==========================================================================
+   MOBILE BOTTOM NAVIGATION BAR WITH CENTER ROASTERY LOGO
+   ========================================================================== */
+.kopag-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .kopag-bottom-nav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FAF8F5;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
+    border-top: 1px solid rgba(13, 56, 43, 0.12);
+    box-shadow: 0 -4px 24px rgba(13, 56, 43, 0.08), 0 -1px 3px rgba(0, 0, 0, 0.03);
+    z-index: 1200;
+    padding: 7px 12px calc(7px + env(safe-area-inset-bottom, 0px));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .kopag-bottom-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    gap: 4px;
+  }
+
+  /* Regular Nav Items (Menu, Call, Bag) */
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    padding: 5px 6px;
+    cursor: pointer;
+    color: #2D2C28;
+    text-decoration: none;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    touch-action: manipulation;
+    flex: 1;
+    min-width: 44px;
+  }
+
+  .bottom-nav-item:active {
+    transform: scale(0.92);
+  }
+
+  .bottom-nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-menu-btn .menu-icon {
+    color: #2B2A27;
+  }
+
+  .nav-call-btn .call-icon {
+    color: #699E33; /* Olive/lime green phone icon as in reference */
+  }
+
+  .nav-bag-btn .bag-icon {
+    color: #2B2A27;
+  }
+
+  .bottom-nav-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #4A463F;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-family: 'Cabinet Grotesk', -apple-system, sans-serif;
+  }
+
+  /* Center Elevated Floating Logo Emblem */
+  .bottom-nav-center-logo-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 4px;
+    position: relative;
+    top: -14px;
+    touch-action: manipulation;
+    flex-shrink: 0;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bottom-nav-center-logo-btn:active {
+    transform: scale(0.92);
+  }
+
+  .center-logo-disc {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #0D382B;
+    border: 3px solid #FAF8F5;
+    box-shadow: 0 6px 18px rgba(13, 56, 43, 0.32), 0 0 0 1.5px rgba(249, 211, 66, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .center-logo-svg {
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  }
+
+  .bottom-nav-center-logo-btn:hover .center-logo-disc {
+    transform: scale(1.06);
+    box-shadow: 0 8px 22px rgba(13, 56, 43, 0.45), 0 0 0 2px #F9D342;
+  }
+
+  /* WhatsApp Pill Button (Directly matches reference) */
+  .bottom-nav-whatsapp-pill {
+    background: #25D366;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9999px;
+    padding: 7px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    font-family: 'Cabinet Grotesk', -apple-system, sans-serif;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.32);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .bottom-nav-whatsapp-pill:active {
+    transform: scale(0.94);
+  }
+
+  .bottom-nav-whatsapp-pill .wa-icon {
+    flex-shrink: 0;
+    color: #FFFFFF;
+  }
+
+  .bottom-nav-whatsapp-pill .wa-text {
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  /* Bag icon with counter badge */
+  .bag-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bottom-nav-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #E85A4F;
+    color: #FFFFFF;
+    font-size: 0.65rem;
+    font-weight: 800;
+    line-height: 1;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    box-shadow: 0 2px 6px rgba(232, 90, 79, 0.4);
+    border: 1.5px solid #FFFFFF;
+  }
+}
+
+@media (max-width: 380px) {
+  .bottom-nav-whatsapp-pill {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    gap: 4px;
+  }
+  .center-logo-disc {
+    width: 44px;
+    height: 44px;
+  }
+  .bottom-nav-center-logo-btn {
+    top: -10px;
+  }
+  .bottom-nav-item {
+    padding: 4px 3px;
+    min-width: 38px;
+  }
+}
+
