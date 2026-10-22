@@ -58,7 +58,7 @@ export default function KopagAboutSection({ onOpenMenu, onOpenReserve }) {
 
         {/* Feature Grid: Left Editorial Media & Right Craft Pillars */}
         <div className="kopag-about-grid">
-          {/* Left Column: Visual Showcase */}
+          {/* Left Column: Visual Showcase & Editorial Manifesto */}
           <div className="about-visual-column">
             <div className="about-photo-wrapper">
               <img
@@ -67,30 +67,33 @@ export default function KopagAboutSection({ onOpenMenu, onOpenReserve }) {
                 className="about-main-img"
                 loading="lazy"
               />
+              <div className="about-photo-tag-top">
+                <span className="photo-tag-chip">SCA 85+ SPECIALTY GRADE</span>
+              </div>
               <div className="about-floating-card">
-                <Sparkles size={18} className="sparkle-icon" />
+                <Sparkles size={16} className="sparkle-icon" />
                 <div className="floating-card-text">
                   <strong>Specialty Micro-Roaster</strong>
-                  <span>Serving thousands of coffee connoisseurs every week</span>
+                  <span>Small-Batch Drum Roasted Every Week</span>
                 </div>
               </div>
             </div>
 
-            <div className="about-secondary-media">
-              <div className="about-secondary-img-box">
-                <img
-                  src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80"
-                  alt="Specialty coffee cup with delicate crema"
-                  className="about-secondary-img"
-                  loading="lazy"
-                />
+            {/* The Artisan Standard Manifesto Card */}
+            <div className="about-manifesto-card">
+              <div className="manifesto-card-top">
+                <span className="manifesto-badge-pill">THE ARTISAN STANDARD</span>
+                <span className="manifesto-est">EST. 2020 &bull; LAHORE</span>
               </div>
-              <div className="about-manifesto-box">
-                <span className="manifesto-label">The Artisan Standard</span>
-                <p className="manifesto-quote">
-                  &ldquo;We never roast dark to hide flaws. We roast to reveal the unique character of soil, rain, and elevation.&rdquo;
-                </p>
-                <span className="manifesto-author">&mdash; Artisan Roast Master</span>
+              <blockquote className="manifesto-quote">
+                &ldquo;We never roast dark to hide flaws. We roast to reveal the unique character of soil, rain, and elevation.&rdquo;
+              </blockquote>
+              <div className="manifesto-footer-row">
+                <div className="roast-master-seal">
+                  <Coffee size={15} className="seal-icon" />
+                  <span>Fresh Cast-Iron Drum Profiling</span>
+                </div>
+                <span className="roast-master-sign">&mdash; Roast Master &bull; Artisan Gulberg</span>
               </div>
             </div>
           </div>
