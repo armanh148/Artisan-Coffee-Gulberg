@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { X, Calendar, Clock, Users, CheckCircle2 } from 'lucide-react';
+import KopagCustomSelect from '../kopag/KopagCustomSelect';
+
+const GUEST_OPTIONS = [
+  { value: '1', label: '1 Person (Solo Work)', sublabel: 'Espresso Bar / Solo Focus Table', badge: 'Solo' },
+  { value: '2', label: '2 People (Catch-up / Pairing)', sublabel: 'Artisan Table for Two', badge: 'Duo' },
+  { value: '4', label: '3–4 People (Small Meeting)', sublabel: 'Lounge Seating with Power Outlets', badge: 'Meeting' },
+  { value: '6', label: '5–6 People (Team Sync)', sublabel: 'Large Round Roastery Table', badge: 'Team' },
+  { value: '10', label: '8–10 People (Full Boardroom)', sublabel: 'Private Acoustic Conference Space', badge: 'Executive' }
+];
 
 export default function ReservationModal({ isOpen, onClose, onConfirm }) {
   const [date, setDate] = useState('2026-10-22');
@@ -97,21 +106,14 @@ export default function ReservationModal({ isOpen, onClose, onConfirm }) {
 
             <div className="taraq-form-row">
               <label className="taraq-form-label">Number of Guests</label>
-              <div className="input-with-icon">
-                <Users size={16} />
-                <select
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  className="taraq-input"
-                >
-                  <option value="1">1 Person (Solo Work)</option>
-                  <option value="2">2 People (Catch-up / Pairing)</option>
-                  <option value="4">3–4 People (Small Meeting)</option>
-                  <option value="6">5–6 People (Team Sync)</option>
-                  <option value="10">8–10 People (Full Boardroom)</option>
-                </select>
-              </div>
+              <KopagCustomSelect
+                value={guests}
+                onChange={(val) => setGuests(val)}
+                options={GUEST_OPTIONS}
+                icon={Users}
+              />
             </div>
+
 
             <div className="taraq-form-grid-2">
               <div>

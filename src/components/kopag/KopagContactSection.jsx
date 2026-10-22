@@ -10,6 +10,73 @@ import {
   Coffee,
   Sparkles
 } from 'lucide-react';
+import KopagCustomSelect from './KopagCustomSelect';
+
+const INQUIRY_OPTIONS = [
+  {
+    value: 'Table Reservation & Lounge',
+    label: 'Table Reservation & Lounge',
+    sublabel: 'Book an espresso table or executive lounge space',
+    badge: 'Popular'
+  },
+  {
+    value: 'Wholesale Specialty Beans',
+    label: 'Wholesale Specialty Coffee Beans',
+    sublabel: 'Fresh roasted batches, custom profiles & B2B supply',
+    badge: 'Roastery'
+  },
+  {
+    value: 'Private Event Catering',
+    label: 'Private Event Catering',
+    sublabel: 'Pop-up live espresso bar & dessert catering',
+    badge: 'Events'
+  },
+  {
+    value: 'Feedback & Compliments',
+    label: 'Feedback & Barista Experience',
+    sublabel: 'Share your feedback or praise our baristas',
+    badge: 'Care'
+  },
+  {
+    value: 'General Inquiries',
+    label: 'General Roastery Inquiries',
+    sublabel: 'Hours, retail merch, partnerships & general info',
+    badge: 'Info'
+  }
+];
+
+const OUTLET_OPTIONS = [
+  {
+    value: 'Gulberg III Lahore',
+    label: 'Gulberg III • M.M. Alam Rd (Lahore)',
+    sublabel: '16-L, Mini Market • Flagship Roastery Hub',
+    badge: 'Flagship'
+  },
+  {
+    value: 'DHA Phase 5 Lahore',
+    label: 'DHA Phase 5 • Sector C (Lahore)',
+    sublabel: 'Sector C Commercial • Boutique Espresso Bar',
+    badge: 'DHA'
+  },
+  {
+    value: 'Tipu Sultan Karachi',
+    label: 'Tipu Sultan Road (Karachi)',
+    sublabel: 'KDA Scheme 1 • Coastal Roastery Lounge',
+    badge: 'Karachi'
+  },
+  {
+    value: 'Clifton Karachi',
+    label: 'Clifton Block 4 (Karachi)',
+    sublabel: 'Near Sea View • Artisan Garden Patio',
+    badge: 'Karachi'
+  },
+  {
+    value: 'Online Delivery Support',
+    label: 'Online Coffee Delivery Support',
+    sublabel: 'Direct Roastery Dispatch & Order Tracking',
+    badge: 'Online'
+  }
+];
 
 export default function KopagContactSection({ selectedBranch }) {
   const [formData, setFormData] = useState({
@@ -216,35 +283,25 @@ export default function KopagContactSection({ selectedBranch }) {
 
                     <div className="form-group">
                       <label htmlFor="contact-inquiry">Inquiry Category</label>
-                      <select
+                      <KopagCustomSelect
                         id="contact-inquiry"
                         value={formData.inquiryType}
-                        onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                        className="contact-select"
-                      >
-                        <option value="Table Reservation & Lounge">Table Reservation &amp; Lounge</option>
-                        <option value="Wholesale Specialty Beans">Wholesale Specialty Coffee Beans</option>
-                        <option value="Private Event Catering">Private Event Catering</option>
-                        <option value="Feedback & Compliments">Feedback &amp; Barista Experience</option>
-                        <option value="General Inquiries">General Roastery Inquiries</option>
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, inquiryType: val })}
+                        options={INQUIRY_OPTIONS}
+                        icon={MessageSquare}
+                      />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="contact-outlet">Preferred Outlet / City</label>
-                    <select
+                    <KopagCustomSelect
                       id="contact-outlet"
                       value={formData.outlet}
-                      onChange={(e) => setFormData({ ...formData, outlet: e.target.value })}
-                      className="contact-select"
-                    >
-                      <option value="Gulberg III Lahore">Gulberg III &bull; M.M. Alam Rd (Lahore)</option>
-                      <option value="DHA Phase 5 Lahore">DHA Phase 5 &bull; Sector C (Lahore)</option>
-                      <option value="Tipu Sultan Karachi">Tipu Sultan Road (Karachi)</option>
-                      <option value="Clifton Karachi">Clifton Block 4 (Karachi)</option>
-                      <option value="Online Delivery Support">Online Coffee Delivery Support</option>
-                    </select>
+                      onChange={(val) => setFormData({ ...formData, outlet: val })}
+                      options={OUTLET_OPTIONS}
+                      icon={MapPin}
+                    />
                   </div>
 
                   <div className="form-group">
