@@ -733,9 +733,34 @@
   font-size: 0.9rem;
 }
 
-/* Global Smooth Animations & Keyframes */
+/* ==========================================================================
+   GLOBAL SMOOTH SCROLLING & SCROLL-TRIGGERED REVEAL ANIMATIONS
+   ========================================================================== */
 html {
   scroll-behavior: smooth;
+}
+
+#explore-menu-section,
+#about-section,
+#visit-shops-section,
+#contact-section,
+#faq-section {
+  scroll-margin-top: 96px;
+}
+
+/* Smooth Staggered Scroll Reveal */
+.kopag-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--stagger, 0s);
+  will-change: opacity, transform;
+}
+
+.kopag-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes kopagFadeUp {
@@ -1282,11 +1307,12 @@ html {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .kopag-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-9px);
 }
 
 .kopag-card-sage-box {
@@ -1300,11 +1326,12 @@ html {
   overflow: hidden;
   padding: 0;
   box-shadow: 0 10px 24px rgba(13, 56, 43, 0.08);
-  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .kopag-card:hover .kopag-card-sage-box {
-  box-shadow: 0 20px 42px rgba(13, 56, 43, 0.16);
+  box-shadow: 0 24px 48px rgba(13, 56, 43, 0.18);
+  transform: scale(1.01);
 }
 
 .kopag-card-badge {
@@ -1321,13 +1348,18 @@ html {
   border-radius: 9999px;
   z-index: 2;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-card:hover .kopag-card-badge {
+  transform: scale(1.06);
 }
 
 .kopag-card-opt-tag {
   position: absolute;
   top: 14px;
   right: 14px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(4px);
   color: var(--kopag-green);
   font-size: 0.68rem;
@@ -1335,6 +1367,12 @@ html {
   padding: 4px 8px;
   border-radius: 9999px;
   z-index: 2;
+  transition: all 0.25s ease;
+}
+
+.kopag-card:hover .kopag-card-opt-tag {
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(13, 56, 43, 0.12);
 }
 
 .kopag-card-img-wrap {
@@ -1349,11 +1387,12 @@ html {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .kopag-card:hover .kopag-card-img {
-  transform: scale(1.07);
+  transform: scale(1.09);
 }
 
 .kopag-card-body {
@@ -1370,6 +1409,11 @@ html {
   letter-spacing: 0.3px;
   margin-bottom: 3px;
   line-height: 1.1;
+  transition: color 0.2s ease;
+}
+
+.kopag-card:hover .kopag-card-title {
+  color: #000;
 }
 
 .kopag-card-desc {
@@ -1396,6 +1440,7 @@ html {
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--kopag-green);
+  transition: transform 0.25s ease;
 }
 
 .kopag-price .currency {
@@ -1417,13 +1462,22 @@ html {
   gap: 4px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.kopag-add-btn:hover {
+.kopag-add-btn svg {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-card:hover .kopag-add-btn {
   background: var(--kopag-yellow);
   color: var(--kopag-green);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 211, 66, 0.4);
+}
+
+.kopag-card:hover .kopag-add-btn svg {
+  transform: translate(2px, -2px);
 }
 
 .kopag-view-more-row {
@@ -1664,11 +1718,12 @@ html {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .kopag-shop-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
 }
 
 .kopag-shop-media-wrap {
@@ -1678,11 +1733,11 @@ html {
   overflow: hidden;
   margin-bottom: 14px;
   box-shadow: 0 12px 28px rgba(13, 56, 43, 0.08);
-  transition: box-shadow 0.35s ease;
+  transition: box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .kopag-shop-card:hover .kopag-shop-media-wrap {
-  box-shadow: 0 22px 45px rgba(13, 56, 43, 0.18);
+  box-shadow: 0 26px 52px rgba(13, 56, 43, 0.22);
 }
 
 .kopag-shop-img {
@@ -1690,18 +1745,19 @@ html {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .kopag-shop-card:hover .kopag-shop-img {
-  transform: scale(1.08);
+  transform: scale(1.10);
 }
 
 .kopag-shop-tag {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(13, 56, 43, 0.85);
+  background: rgba(13, 56, 43, 0.88);
   backdrop-filter: blur(4px);
   color: #FFF;
   font-size: 0.68rem;
@@ -1710,6 +1766,11 @@ html {
   border-radius: 9999px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: background 0.25s ease;
+}
+
+.kopag-shop-card:hover .kopag-shop-tag {
+  background: var(--kopag-green);
 }
 
 .kopag-floating-circle-arrow {
@@ -1720,16 +1781,22 @@ html {
   height: 50px;
   border-radius: 50%;
   background: var(--kopag-yellow);
+  color: var(--kopag-green);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              background 0.25s ease,
+              color 0.25s ease;
 }
 
 .kopag-shop-card:hover .kopag-floating-circle-arrow {
-  transform: scale(1.15) rotate(45deg);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.28);
+  transform: scale(1.18) rotate(45deg);
+  background: #F9D342;
+  color: #0D382B;
+  box-shadow: 0 14px 28px rgba(249, 211, 66, 0.5);
 }
 
 .kopag-shop-name {
@@ -1970,13 +2037,13 @@ html {
   display: flex;
   gap: 18px;
   align-items: flex-start;
-  transition: all 0.25s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 16px rgba(13, 56, 43, 0.04);
 }
 
 .about-pillar-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(13, 56, 43, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(13, 56, 43, 0.10);
   border-color: var(--kopag-green);
 }
 
@@ -1990,6 +2057,13 @@ html {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-pillar-card:hover .pillar-icon-box {
+  transform: scale(1.12) rotate(6deg);
+  background: var(--kopag-green);
+  color: #F9D342;
 }
 
 .pillar-tag {
@@ -2202,14 +2276,14 @@ html {
   border: 1.5px solid rgba(13, 56, 43, 0.14);
   border-radius: 20px;
   padding: 22px;
-  transition: all 0.25s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 16px rgba(13, 56, 43, 0.04);
 }
 
 .contact-touchpoint-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   border-color: var(--kopag-green);
-  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.09);
+  box-shadow: 0 14px 32px rgba(13, 56, 43, 0.10);
 }
 
 .contact-touchpoint-card.highlight {
@@ -2234,6 +2308,11 @@ html {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-touchpoint-card:hover .touchpoint-icon-box {
+  transform: scale(1.1) rotate(-6deg);
 }
 
 .touchpoint-icon-box.yellow {
@@ -2294,11 +2373,12 @@ html {
   gap: 5px;
   color: var(--kopag-green);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.2s;
 }
 
 .touchpoint-link:hover {
   color: #000;
+  transform: translateX(3px);
   text-decoration: underline;
 }
 
@@ -2315,12 +2395,12 @@ html {
   gap: 10px;
   text-decoration: none;
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-  transition: all 0.25s;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-whatsapp-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.42);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
   filter: brightness(1.05);
 }
 
@@ -2385,7 +2465,7 @@ html {
   color: var(--kopag-green);
   background: #FAF9F6;
   outline: none;
-  transition: all 0.2s;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
 }
 
@@ -2394,7 +2474,8 @@ html {
 .contact-textarea:focus {
   border-color: var(--kopag-green);
   background: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(13, 56, 43, 0.1);
+  box-shadow: 0 0 0 3.5px rgba(13, 56, 43, 0.12);
+  transform: translateY(-1px);
 }
 
 .contact-submit-btn {
@@ -2413,15 +2494,24 @@ html {
   gap: 8px;
   width: 100%;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 8px 24px rgba(13, 56, 43, 0.25);
   margin-top: 8px;
+}
+
+.contact-submit-btn svg {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-submit-btn:hover {
   background: var(--kopag-yellow);
   color: var(--kopag-green);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(249, 211, 66, 0.4);
+}
+
+.contact-submit-btn:hover svg {
+  transform: translateX(5px);
 }
 
 .contact-success-state {
@@ -2556,12 +2646,13 @@ html {
   border-bottom: 1.5px solid rgba(13, 56, 43, 0.16);
   padding: 20px 0;
   cursor: pointer;
-  transition: padding 0.25s ease, background 0.2s ease;
+  transition: padding 0.28s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
 }
 
 .kopag-accordion-item:hover {
-  padding-left: 10px;
-  background: rgba(13, 56, 43, 0.02);
+  padding-left: 12px;
+  background: rgba(13, 56, 43, 0.03);
+  border-radius: 12px;
 }
 
 .kopag-accordion-header {
@@ -2576,7 +2667,7 @@ html {
   font-weight: 800;
   color: var(--kopag-green);
   line-height: 1.35;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
 .kopag-accordion-item:hover .kopag-accordion-question {
@@ -2588,12 +2679,17 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(13, 56, 43, 0.08);
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
+}
+
+.kopag-accordion-item:hover .kopag-accordion-toggle {
+  transform: scale(1.15);
+  background: rgba(13, 56, 43, 0.14);
 }
 
 .kopag-accordion-item.is-open .kopag-accordion-toggle {
@@ -2640,6 +2736,13 @@ html {
   letter-spacing: -0.025em;
   margin: 0;
   user-select: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-footer-huge-wordmark:hover {
+  letter-spacing: -0.012em;
+  color: #08241B;
+  text-shadow: 0 16px 40px rgba(13, 56, 43, 0.18);
 }
 
 .kopag-footer-hero-right {
@@ -2674,14 +2777,15 @@ html {
   gap: 6px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 6px 18px rgba(249, 211, 66, 0.35);
 }
 
 .kopag-yellow-pill-cta:hover {
   background: #000;
   color: #FFF;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
 }
 
 .kopag-trans-pill-cta {
@@ -2695,12 +2799,13 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .kopag-trans-pill-cta:hover {
   background: var(--kopag-green);
   color: #FFF;
+  transform: translateY(-2px);
 }
 
 .kopag-footer-divider {
@@ -2748,12 +2853,13 @@ html {
   padding: 0;
   text-align: left;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .kopag-col-links a:hover,
 .kopag-col-links button:hover,
 .kopag-col-links .clickable-branch:hover {
+  transform: translateX(6px);
   color: var(--kopag-green);
 }
 
@@ -2776,7 +2882,15 @@ html {
   border-radius: 50%;
   border: 1px solid rgba(13, 56, 43, 0.25);
   color: var(--kopag-green);
-  transition: all 0.2s;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-social-icons-row a:hover {
+  transform: translateY(-4px) rotate(8deg);
+  background: var(--kopag-green);
+  color: #F9D342;
+  border-color: var(--kopag-green);
+  box-shadow: 0 8px 18px rgba(13, 56, 43, 0.25);
 }
 
 .kopag-social-icons-row a:hover {

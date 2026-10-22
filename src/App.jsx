@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import KopagNavbar from './components/kopag/KopagNavbar';
 import KopagHeroSection from './components/kopag/KopagHeroSection';
 import KopagMenuSection from './components/kopag/KopagMenuSection';
@@ -43,9 +43,52 @@ export default function App() {
     return cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
   }, [cartItems]);
 
+  // Smooth Scroll Reveal Animation Observer
+  useEffect(() => {
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.06,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    // Small delay to let DOM render complete
+    const timeout = setTimeout(() => {
+      const elements = document.querySelectorAll(
+        '.kopag-card, .about-pillar-card, .kopag-shop-card, .contact-touchpoint-card, .contact-form-card, .about-stat-item, .kopag-faq-item, .kopag-split-inner, .kopag-about-header, .kopag-contact-header, .kopag-shops-header'
+      );
+
+      elements.forEach((el, index) => {
+        el.classList.add('kopag-reveal');
+        el.style.setProperty('--stagger', `${(index % 5) * 0.07}s`);
+        observer.observe(el);
+      });
+    }, 60);
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [activeCategory]);
+
   const scrollTo = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const navOffset = 82;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Cart Handlers
