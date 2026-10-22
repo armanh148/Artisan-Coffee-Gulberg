@@ -28,52 +28,82 @@
   position: relative;
 }
 
-/* 1. TOP NAVBAR (EDITORIAL RETRO-MODERN THEME STYLING) */
+/* 1. TOP NAVBAR (FLOATING LUXURY EDITORIAL CAPSULE) */
 .navbar-root-wrap {
   position: fixed;
-  top: 0;
+  top: 18px;
   left: 0;
   right: 0;
-  width: 100%;
+  width: calc(100% - 48px);
+  max-width: 1400px;
+  margin: 0 auto;
   z-index: 1000;
-  background: rgba(245, 241, 233, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1.5px solid rgba(13, 56, 43, 0.12);
-  padding: 14px 44px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(245, 241, 233, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(13, 56, 43, 0.2);
+  border-radius: 9999px;
+  padding: 8px 20px;
+  box-shadow: 0 16px 40px rgba(13, 56, 43, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-root-wrap.is-scrolled {
-  padding: 10px 44px;
-  background: rgba(245, 241, 233, 0.98);
-  box-shadow: 0 10px 30px rgba(13, 56, 43, 0.08);
-  border-bottom-color: rgba(13, 56, 43, 0.2);
+  top: 12px;
+  background: rgba(245, 241, 233, 0.96);
+  border-color: rgba(13, 56, 43, 0.3);
+  box-shadow: 0 20px 48px rgba(13, 56, 43, 0.14);
 }
 
 .navbar-inner-container {
-  max-width: 1600px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Left: Bold clean brand logo with sub-mark */
+/* Left: Brand Emblem + Typography Mark */
 .navbar-brand-col {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
   user-select: none;
   flex-shrink: 0;
-  line-height: 1;
+  padding-left: 4px;
   transition: transform 0.25s ease;
 }
 
 .navbar-brand-col:hover {
   transform: scale(1.02);
+}
+
+.navbar-seal-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 8px rgba(13, 56, 43, 0.16));
+}
+
+.navbar-brand-col:hover .navbar-seal-icon {
+  transform: rotate(20deg) scale(1.08);
+}
+
+.navbar-seal-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.navbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
 
 .navbar-brand-title {
@@ -83,78 +113,128 @@
   letter-spacing: 2px;
   color: var(--kopag-green);
   text-transform: uppercase;
-  line-height: 0.9;
+  line-height: 0.88;
 }
 
 .navbar-brand-sub {
   font-size: 0.52rem;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   color: var(--kopag-green-muted);
   text-transform: uppercase;
   margin-top: 3px;
 }
 
-/* Center: Floating White Rounded Capsule with Theme Navigation Links */
+/* Center: Tactile White Pill Capsule with Segmented Links */
 .navbar-center-capsule {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #FFFFFF;
   border-radius: 9999px;
-  padding: 5px 8px;
+  padding: 4px 6px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 4px 20px rgba(13, 56, 43, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+  gap: 3px;
+  box-shadow: 0 4px 16px rgba(13, 56, 43, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.8);
   border: 1.5px solid rgba(13, 56, 43, 0.14);
   transition: all 0.25s ease;
 }
 
 .navbar-center-capsule:hover {
-  box-shadow: 0 8px 26px rgba(13, 56, 43, 0.1);
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.1);
   border-color: rgba(13, 56, 43, 0.24);
 }
 
 .capsule-link {
   background: transparent;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   color: var(--kopag-green);
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 9999px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
 .capsule-link:hover {
-  background: rgba(13, 56, 43, 0.08);
+  background: rgba(13, 56, 43, 0.06);
   color: var(--kopag-green);
   transform: translateY(-1px);
 }
 
-/* Right: Secondary Action (Pill) + Signature Buttercup Yellow Primary Cart Pill */
+.capsule-link.is-active {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px rgba(13, 56, 43, 0.25);
+}
+
+.capsule-link.is-active:hover {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* Right Actions: Branch Live Chip + Reserve + Radiant Yellow Cart */
 .navbar-right-col {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-shrink: 0;
+}
+
+.navbar-branch-pill {
+  background: rgba(13, 56, 43, 0.06);
+  border: 1px solid rgba(13, 56, 43, 0.16);
+  border-radius: 9999px;
+  padding: 7px 14px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kopag-green);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-branch-pill:hover {
+  background: rgba(13, 56, 43, 0.12);
+  border-color: var(--kopag-green);
+  transform: translateY(-1px);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 .navbar-secondary-btn {
   background: transparent;
   border: 1.5px solid rgba(13, 56, 43, 0.22);
   border-radius: 9999px;
-  padding: 8px 20px;
-  font-size: 0.8rem;
+  padding: 8px 18px;
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   color: var(--kopag-green);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: all 0.25s ease;
 }
 
@@ -165,21 +245,25 @@
   transform: translateY(-1px);
 }
 
+.navbar-secondary-btn .btn-icon {
+  opacity: 0.8;
+}
+
 .navbar-primary-cta {
-  background: var(--kopag-yellow);
+  background: linear-gradient(135deg, #F9D342 0%, #F5C725 100%);
   color: var(--kopag-green);
-  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border: 1.5px solid rgba(13, 56, 43, 0.2);
   border-radius: 9999px;
-  padding: 8px 22px;
+  padding: 9px 22px;
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(249, 211, 66, 0.38);
+  box-shadow: 0 6px 18px rgba(249, 211, 66, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -188,13 +272,21 @@
   color: #FFFFFF;
   border-color: var(--kopag-green);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.25);
+  box-shadow: 0 10px 26px rgba(13, 56, 43, 0.28);
+}
+
+.navbar-primary-cta .cart-icon {
+  transition: transform 0.25s ease;
+}
+
+.navbar-primary-cta:hover .cart-icon {
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .navbar-cart-badge {
   background: var(--kopag-green);
   color: #FFFFFF;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 900;
   border-radius: 9999px;
   padding: 2px 7px;
@@ -2547,7 +2639,8 @@ html {
 
 @media (max-width: 880px) {
   .navbar-center-capsule,
-  .navbar-secondary-btn {
+  .navbar-secondary-btn,
+  .navbar-branch-pill {
     display: none;
   }
   .navbar-mobile-toggle {
@@ -2564,17 +2657,26 @@ html {
 @media (max-width: 768px) {
   /* 1. Header & Nav */
   .navbar-root-wrap {
-    padding: 12px 18px;
+    top: 10px;
+    width: calc(100% - 24px);
+    padding: 8px 14px;
   }
   .navbar-root-wrap.is-scrolled {
-    padding: 10px 18px;
+    top: 8px;
+  }
+  .navbar-seal-icon {
+    width: 30px;
+    height: 30px;
   }
   .navbar-brand-title {
     font-size: 1.45rem;
   }
+  .navbar-brand-sub {
+    font-size: 0.44rem;
+  }
   .navbar-primary-cta {
-    padding: 7px 16px;
-    font-size: 0.8rem;
+    padding: 7px 14px;
+    font-size: 0.76rem;
     border-radius: 9999px;
   }
   .navbar-mobile-toggle {

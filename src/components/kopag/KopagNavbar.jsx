@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, X, MapPin } from 'lucide-react';
 
 export default function KopagNavbar({
   cartCount = 0,
@@ -15,10 +15,11 @@ export default function KopagNavbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeNav, setActiveNav] = useState('menu');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -27,46 +28,108 @@ export default function KopagNavbar({
   return (
     <header className={`navbar-root-wrap ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="navbar-inner-container">
-        {/* 1. Left: Clean Bold Brand Logo (matches "Guide" position in reference) */}
+        {/* 1. Left: Brand Emblem + Typography Mark */}
         <div
           className="navbar-brand-col"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActiveNav('menu');
+          }}
           role="button"
           tabIndex={0}
-          title="Artisan Coffee Roaster"
+          title="Artisan Coffee Roaster &bull; Home"
         >
-          <span className="navbar-brand-title">ARTISAN</span>
-          <span className="navbar-brand-sub">COFFEE ROASTER</span>
+          <div className="navbar-seal-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" className="navbar-seal-svg" width="34" height="34">
+              <circle cx="20" cy="20" r="18" fill="#0D382B" stroke="#F9D342" strokeWidth="1.5" strokeDasharray="2,2"/>
+              <path d="M14 26 C14 26, 12 18, 20 12 C28 18, 26 26, 26 26 Z" fill="#F9D342" opacity="0.95"/>
+              <circle cx="20" cy="20" r="2.5" fill="#0D382B"/>
+            </svg>
+          </div>
+          <div className="navbar-brand-text">
+            <span className="navbar-brand-title">ARTISAN</span>
+            <span className="navbar-brand-sub">ROASTERY &bull; EST. 2020</span>
+          </div>
         </div>
 
-        {/* 2. Center: Floating White Rounded Capsule with Navigation Links (5 links matching reference) */}
+        {/* 2. Center: Tactile White Pill Capsule with Segmented Links */}
         <nav className="navbar-center-capsule" aria-label="Main Navigation">
-          <button type="button" className="capsule-link" onClick={onOpenMenu}>
+          <button
+            type="button"
+            className={`capsule-link ${activeNav === 'menu' ? 'is-active' : ''}`}
+            onClick={() => {
+              setActiveNav('menu');
+              if (onOpenMenu) onOpenMenu();
+            }}
+          >
             Menu
           </button>
-          <button type="button" className="capsule-link" onClick={onOpenAbout}>
+          <button
+            type="button"
+            className={`capsule-link ${activeNav === 'about' ? 'is-active' : ''}`}
+            onClick={() => {
+              setActiveNav('about');
+              if (onOpenAbout) onOpenAbout();
+            }}
+          >
             About
           </button>
-          <button type="button" className="capsule-link" onClick={onOpenShops}>
+          <button
+            type="button"
+            className={`capsule-link ${activeNav === 'outlets' ? 'is-active' : ''}`}
+            onClick={() => {
+              setActiveNav('outlets');
+              if (onOpenShops) onOpenShops();
+            }}
+          >
             Outlets
           </button>
-          <button type="button" className="capsule-link" onClick={onOpenContact}>
+          <button
+            type="button"
+            className={`capsule-link ${activeNav === 'contact' ? 'is-active' : ''}`}
+            onClick={() => {
+              setActiveNav('contact');
+              if (onOpenContact) onOpenContact();
+            }}
+          >
             Contact
           </button>
-          <button type="button" className="capsule-link" onClick={onOpenFaq}>
+          <button
+            type="button"
+            className={`capsule-link ${activeNav === 'faq' ? 'is-active' : ''}`}
+            onClick={() => {
+              setActiveNav('faq');
+              if (onOpenFaq) onOpenFaq();
+            }}
+          >
             FAQs
           </button>
         </nav>
 
-        {/* 3. Right: Secondary Action ("Log in" style) + Glowing Accent Pill ("Sign Up" style) */}
+        {/* 3. Right Actions: Branch Live Chip + Reserve + Radiant Yellow Cart */}
         <div className="navbar-right-col">
+          {selectedBranch && (
+            <button
+              type="button"
+              className="navbar-branch-pill"
+              onClick={onOpenLocation}
+              title="Click to Switch Outlet"
+            >
+              <span className="pulse-dot" />
+              <span className="branch-label">
+                {selectedBranch.name.replace('Artisan Coffee Roaster - ', '').split(' ')[0]}
+              </span>
+            </button>
+          )}
+
           <button
             type="button"
             className="navbar-secondary-btn"
             onClick={onOpenReserve}
             title="Reserve a Table"
           >
-            Reserve
+            <Calendar size={13} className="btn-icon" />
+            <span>Reserve</span>
           </button>
 
           <button
@@ -75,8 +138,8 @@ export default function KopagNavbar({
             onClick={onOpenCart}
             title="View Cart"
           >
-            <ShoppingBag size={15} />
-            <span>Cart</span>
+            <ShoppingBag size={14} className="cart-icon" />
+            <span className="cta-text">Cart</span>
             {cartCount > 0 && <span className="navbar-cart-badge">{cartCount}</span>}
           </button>
 
@@ -87,7 +150,7 @@ export default function KopagNavbar({
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -116,6 +179,7 @@ export default function KopagNavbar({
                 type="button"
                 onClick={() => {
                   if (onOpenMenu) onOpenMenu();
+                  setActiveNav('menu');
                   setMobileMenuOpen(false);
                 }}
               >
@@ -125,6 +189,7 @@ export default function KopagNavbar({
                 type="button"
                 onClick={() => {
                   if (onOpenAbout) onOpenAbout();
+                  setActiveNav('about');
                   setMobileMenuOpen(false);
                 }}
               >
@@ -134,6 +199,7 @@ export default function KopagNavbar({
                 type="button"
                 onClick={() => {
                   if (onOpenShops) onOpenShops();
+                  setActiveNav('outlets');
                   setMobileMenuOpen(false);
                 }}
               >
@@ -143,6 +209,7 @@ export default function KopagNavbar({
                 type="button"
                 onClick={() => {
                   if (onOpenContact) onOpenContact();
+                  setActiveNav('contact');
                   setMobileMenuOpen(false);
                 }}
               >
@@ -170,6 +237,7 @@ export default function KopagNavbar({
                 type="button"
                 onClick={() => {
                   if (onOpenFaq) onOpenFaq();
+                  setActiveNav('faq');
                   setMobileMenuOpen(false);
                 }}
               >
