@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, CheckCircle2, ShieldCheck, MapPin, Phone, User, CreditCard, Banknote, Smartphone } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, CheckCircle2, ShieldCheck, MapPin, Phone, User, CreditCard, Banknote, Smartphone, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function CheckoutModal({
   isOpen,
@@ -16,10 +16,21 @@ export default function CheckoutModal({
   const [isOrdered, setIsOrdered] = useState(false);
   const [orderId, setOrderId] = useState('');
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
+  const totalItemsCount = cartItems.reduce((acc, i) => acc + i.quantity, 0);
   const subtotal = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
-  const deliveryFee = orderType === 'Delivery' ? selectedBranch.deliveryFee : 0;
+  const deliveryFee = orderType === 'Delivery' ? (subtotal > 0 ? selectedBranch.deliveryFee : 0) : 0;
   const gst = Math.round(subtotal * 0.05);
   const grandTotal = subtotal + deliveryFee + gst;
 
@@ -32,260 +43,239 @@ export default function CheckoutModal({
   };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 540 }}>
+    <div className="modal-backdrop kopag-checkout-backdrop" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="modal-dialog kopag-checkout-dialog" onClick={(e) => e.stopPropagation()}>
         {!isOrdered ? (
           <>
-            <div style={{ padding: '20px 24px', background: '#0D382B', borderBottom: '1px solid rgba(13, 56, 43, 0.25)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
-              <div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', margin: 0, fontFamily: 'var(--kopag-font-display, inherit)' }}>Checkout Order</h3>
-                <span style={{ fontSize: '0.82rem', color: '#FAF7F0', opacity: 0.85, marginTop: 3, display: 'block' }}>
+            {/* 1. Header Banner */}
+            <div className="kopag-checkout-header">
+              <div className="header-text-group">
+                <div className="header-kicker">
+                  <Sparkles size={12} />
+                  <span>ARTISAN ROASTERY &middot; GULBERG LAHORE</span>
+                </div>
+                <h3 className="header-title">Checkout Order</h3>
+                <span className="header-branch-tag">
                   {orderType} from {selectedBranch.name}
                 </span>
               </div>
-              <button className="modal-close-btn" onClick={onClose} style={{ position: 'static', background: 'rgba(255, 255, 255, 0.15)', color: '#FFFFFF' }}>
+              <button
+                type="button"
+                className="kopag-checkout-close-btn"
+                onClick={onClose}
+                title="Close (Esc)"
+                aria-label="Close modal"
+              >
                 <X size={18} />
               </button>
             </div>
 
-            <form onSubmit={handleSubmitOrder} className="modal-content-pad" style={{ padding: '24px' }}>
-              {/* Customer Info */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 20 }}>
-                <div>
-                  <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1e293b', display: 'block', marginBottom: 6 }}>
-                    Full Name
-                  </label>
-                  <div style={{ position: 'relative' }}>
-                    <User size={16} color="#94a3b8" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)' }} />
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g. Arman Khan"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      style={{
-                        width: '100%',
-                        height: 44,
-                        padding: '0 12px 0 38px',
-                        borderRadius: 8,
-                        border: '1.5px solid #cbd5e1',
-                        fontSize: '0.88rem'
-                      }}
-                    />
-                  </div>
+            {/* 2. Form Content */}
+            <form onSubmit={handleSubmitOrder} className="kopag-checkout-content">
+              {/* Customer Contact Information */}
+              <div className="checkout-section">
+                <div className="section-label-bar">
+                  <span className="section-title">Contact &amp; Delivery Details</span>
+                  <span className="section-step">Step 1 of 2</span>
                 </div>
 
-                <div>
-                  <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1e293b', display: 'block', marginBottom: 6 }}>
-                    Mobile Number (Pakistan)
-                  </label>
-                  <div style={{ position: 'relative' }}>
-                    <Phone size={16} color="#94a3b8" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)' }} />
-                    <input
-                      required
-                      type="tel"
-                      placeholder="e.g. 0344 1234567"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      style={{
-                        width: '100%',
-                        height: 44,
-                        padding: '0 12px 0 38px',
-                        borderRadius: 8,
-                        border: '1.5px solid #cbd5e1',
-                        fontSize: '0.88rem'
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {orderType === 'Delivery' && (
-                  <div>
-                    <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1e293b', display: 'block', marginBottom: 6 }}>
-                      Complete Delivery Address (Gulberg / Lahore)
-                    </label>
-                    <div style={{ position: 'relative' }}>
-                      <MapPin size={16} color="#94a3b8" style={{ position: 'absolute', left: 12, top: 14 }} />
-                      <textarea
+                <div className="fields-stack">
+                  {/* Name */}
+                  <div className="form-field-group">
+                    <label className="field-label">Full Name</label>
+                    <div className="input-with-icon">
+                      <User size={16} className="field-icon" />
+                      <input
                         required
-                        placeholder="House / Apartment #, Street name, Block, Gulberg..."
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        style={{
-                          width: '100%',
-                          minHeight: 70,
-                          padding: '12px 12px 12px 38px',
-                          borderRadius: 8,
-                          border: '1.5px solid #cbd5e1',
-                          fontSize: '0.88rem',
-                          resize: 'none'
-                        }}
+                        type="text"
+                        placeholder="e.g. Arman Khan"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="kopag-input"
                       />
                     </div>
                   </div>
-                )}
+
+                  {/* Phone */}
+                  <div className="form-field-group">
+                    <label className="field-label">Mobile Number (Pakistan)</label>
+                    <div className="input-with-icon">
+                      <Phone size={16} className="field-icon" />
+                      <input
+                        required
+                        type="tel"
+                        placeholder="e.g. 0344 1234567"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="kopag-input"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Address (If Delivery) */}
+                  {orderType === 'Delivery' && (
+                    <div className="form-field-group">
+                      <label className="field-label">Delivery Address (Gulberg / Lahore)</label>
+                      <div className="input-with-icon">
+                        <MapPin size={16} className="field-icon top-align" />
+                        <textarea
+                          required
+                          placeholder="House / Apartment #, Street name, Block, Gulberg..."
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          className="kopag-textarea"
+                          rows={2}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Payment Methods */}
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1e293b', display: 'block', marginBottom: 10 }}>
-                  Select Payment Method:
-                </label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  <label
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '12px 16px',
-                      borderRadius: 10,
-                      border: '1.5px solid',
-                      borderColor: paymentMethod === 'cod' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
-                      backgroundColor: paymentMethod === 'cod' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      name="payment"
-                      checked={paymentMethod === 'cod'}
-                      onChange={() => setPaymentMethod('cod')}
-                    />
-                    <Banknote size={20} color="#0D382B" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Cash on Delivery / Pick-Up</span>
-                  </label>
+              <div className="checkout-section">
+                <div className="section-label-bar">
+                  <span className="section-title">Select Payment Method</span>
+                  <span className="section-step">Step 2 of 2</span>
+                </div>
 
-                  <label
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '12px 16px',
-                      borderRadius: 10,
-                      border: '1.5px solid',
-                      borderColor: paymentMethod === 'card' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
-                      backgroundColor: paymentMethod === 'card' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
-                      cursor: 'pointer'
-                    }}
+                <div className="payment-options-grid">
+                  {/* COD */}
+                  <div
+                    className={`kopag-pay-card ${paymentMethod === 'cod' ? 'is-selected' : ''}`}
+                    onClick={() => setPaymentMethod('cod')}
                   >
-                    <input
-                      type="radio"
-                      name="payment"
-                      checked={paymentMethod === 'card'}
-                      onChange={() => setPaymentMethod('card')}
-                    />
-                    <CreditCard size={20} color="#0D382B" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Credit / Debit Card (Online)</span>
-                  </label>
+                    <div className="pay-left">
+                      <div className={`kopag-pay-radio ${paymentMethod === 'cod' ? 'active' : ''}`}>
+                        {paymentMethod === 'cod' && <div className="radio-dot" />}
+                      </div>
+                      <div className="pay-icon-capsule">
+                        <Banknote size={18} />
+                      </div>
+                      <div className="pay-info">
+                        <span className="pay-name">Cash on Delivery / Pick-Up</span>
+                        <span className="pay-desc">Pay upon receiving your order</span>
+                      </div>
+                    </div>
+                  </div>
 
-                  <label
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '12px 16px',
-                      borderRadius: 10,
-                      border: '1.5px solid',
-                      borderColor: paymentMethod === 'wallet' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
-                      backgroundColor: paymentMethod === 'wallet' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
-                      cursor: 'pointer'
-                    }}
+                  {/* Card */}
+                  <div
+                    className={`kopag-pay-card ${paymentMethod === 'card' ? 'is-selected' : ''}`}
+                    onClick={() => setPaymentMethod('card')}
                   >
-                    <input
-                      type="radio"
-                      name="payment"
-                      checked={paymentMethod === 'wallet'}
-                      onChange={() => setPaymentMethod('wallet')}
-                    />
-                    <Smartphone size={20} color="#0D382B" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Easypaisa / JazzCash</span>
-                  </label>
+                    <div className="pay-left">
+                      <div className={`kopag-pay-radio ${paymentMethod === 'card' ? 'active' : ''}`}>
+                        {paymentMethod === 'card' && <div className="radio-dot" />}
+                      </div>
+                      <div className="pay-icon-capsule">
+                        <CreditCard size={18} />
+                      </div>
+                      <div className="pay-info">
+                        <span className="pay-name">Credit / Debit Card (Online)</span>
+                        <span className="pay-desc">Visa, Mastercard, PayPak</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Wallet */}
+                  <div
+                    className={`kopag-pay-card ${paymentMethod === 'wallet' ? 'is-selected' : ''}`}
+                    onClick={() => setPaymentMethod('wallet')}
+                  >
+                    <div className="pay-left">
+                      <div className={`kopag-pay-radio ${paymentMethod === 'wallet' ? 'active' : ''}`}>
+                        {paymentMethod === 'wallet' && <div className="radio-dot" />}
+                      </div>
+                      <div className="pay-icon-capsule">
+                        <Smartphone size={18} />
+                      </div>
+                      <div className="pay-info">
+                        <span className="pay-name">Easypaisa / JazzCash</span>
+                        <span className="pay-desc">Instant mobile wallet checkout</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Order Summary & Submit */}
-              <div style={{ background: '#FAF7F0', padding: 16, borderRadius: 12, marginBottom: 20, border: '1px solid rgba(13, 56, 43, 0.12)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 6 }}>
-                  <span>Items Total ({cartItems.length})</span>
+              {/* Order Bill Summary Box */}
+              <div className="kopag-checkout-receipt">
+                <div className="receipt-row">
+                  <span>Items Total ({totalItemsCount})</span>
                   <span>Rs. {subtotal.toLocaleString()}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 6 }}>
+                <div className="receipt-row">
                   <span>Delivery / Handling</span>
-                  <span>{orderType === 'Delivery' ? `Rs. ${deliveryFee}` : 'FREE'}</span>
+                  <span className={deliveryFee === 0 ? 'is-free' : ''}>
+                    {orderType === 'Delivery' ? `Rs. ${deliveryFee}` : 'FREE'}
+                  </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 8 }}>
+                <div className="receipt-row">
                   <span>Tax (5% GST)</span>
                   <span>Rs. {gst.toLocaleString()}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.05rem', fontWeight: 800, color: '#0D382B', borderTop: '1px dashed rgba(13, 56, 43, 0.16)', paddingTop: 8 }}>
-                  <span>Total Amount</span>
-                  <span style={{ color: '#0D382B' }}>Rs. {grandTotal.toLocaleString()}</span>
+                <div className="receipt-total-row">
+                  <span className="total-title">Total Amount</span>
+                  <span className="total-amount">Rs. {grandTotal.toLocaleString()}</span>
                 </div>
               </div>
 
+              {/* Submit CTA Button */}
               <button
                 type="submit"
-                className="cart-checkout-btn"
-                style={{ width: '100%', marginTop: 0 }}
+                className="kopag-order-confirm-btn"
               >
-                <span>Confirm & Place Order</span>
-                <span>Rs. {grandTotal.toLocaleString()}</span>
+                <div className="confirm-btn-left">
+                  <ShieldCheck size={18} />
+                  <span>Confirm &amp; Place Order</span>
+                </div>
+                <div className="confirm-btn-pill">
+                  <span>Rs. {grandTotal.toLocaleString()}</span>
+                  <ArrowRight size={15} />
+                </div>
               </button>
             </form>
           </>
         ) : (
-          /* Order Confirmation Screen */
-          <div className="modal-content-pad" style={{ textAlign: 'center', padding: '40px 24px' }}>
-            <div
-              style={{
-                width: 70,
-                height: 70,
-                borderRadius: '50%',
-                background: '#ecfdf5',
-                color: '#10b981',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 20px'
-              }}
-            >
-              <CheckCircle2 size={42} />
+          /* Order Success Confirmation State */
+          <div className="kopag-success-container">
+            <div className="success-badge-glow">
+              <CheckCircle2 size={46} strokeWidth={2.5} />
             </div>
 
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#14181b', marginBottom: 8 }}>
-              Order Confirmed!
-            </h3>
-            <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: 20 }}>
-              Shukriya {name}! Your order has been dispatched to <strong>{selectedBranch.name}</strong> kitchen.
+            <h3 className="success-heading">ORDER CONFIRMED!</h3>
+            <p className="success-subtext">
+              Shukriya <strong>{name}</strong>! Your order has been dispatched to <strong>{selectedBranch.name}</strong> roastery bar.
             </p>
 
-            <div style={{ background: '#f8fafc', padding: '16px', borderRadius: 12, border: '1px solid #e2e8f0', marginBottom: 24, textAlign: 'left' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Order Reference:</span>
-                <strong style={{ color: '#0D382B', fontSize: '0.95rem' }}>{orderId}</strong>
+            <div className="success-receipt-card">
+              <div className="success-detail-row">
+                <span className="detail-label">Order Reference:</span>
+                <span className="detail-value id-badge">{orderId}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Fulfillment:</span>
-                <strong style={{ color: '#1e293b', fontSize: '0.85rem' }}>{orderType}</strong>
+              <div className="success-detail-row">
+                <span className="detail-label">Fulfillment:</span>
+                <span className="detail-value">{orderType}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Estimated Time:</span>
-                <strong style={{ color: '#0D382B', fontSize: '0.85rem' }}>
+              <div className="success-detail-row">
+                <span className="detail-label">Estimated Time:</span>
+                <span className="detail-value highlight">
                   {orderType === 'Delivery' ? selectedBranch.eta : '15 mins'}
-                </strong>
+                </span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Payment Status:</span>
-                <strong style={{ color: '#10b981', fontSize: '0.85rem' }}>Pending on Delivery</strong>
+              <div className="success-detail-row">
+                <span className="detail-label">Payment:</span>
+                <span className="detail-value status">Pending on {orderType}</span>
               </div>
             </div>
 
             <button
-              className="hero-btn-primary"
-              style={{ width: '100%', justifyContent: 'center' }}
+              type="button"
+              className="kopag-success-done-btn"
               onClick={onClose}
             >
-              Back to Menu
+              <span>Done &bull; Back to Menu</span>
             </button>
           </div>
         )}

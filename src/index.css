@@ -6056,7 +6056,7 @@ button:active,
 .cart-item-price {
   font-size: 0.98rem;
   font-weight: 800;
-  color: #006871;
+  color: var(--kopag-green, #0D382B);
 }
 
 .cart-empty-state {
@@ -6072,8 +6072,8 @@ button:active,
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba(89, 182, 205, 0.12);
-  color: #006871;
+  background: rgba(13, 56, 43, 0.1);
+  color: var(--kopag-green, #0D382B);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6083,7 +6083,7 @@ button:active,
 .cart-drawer-footer {
   padding: 22px 24px;
   background: #ffffff;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(13, 56, 43, 0.12);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -6091,7 +6091,7 @@ button:active,
   display: flex;
   justify-content: space-between;
   font-size: 0.86rem;
-  color: #64748b;
+  color: #3B6153;
   margin-bottom: 8px;
 }
 
@@ -6100,17 +6100,17 @@ button:active,
   justify-content: space-between;
   font-size: 1.15rem;
   font-weight: 900;
-  color: #0c1518;
+  color: #0D382B;
   padding-top: 12px;
-  border-top: 1.5px dashed #e2e8f0;
+  border-top: 1.5px dashed rgba(13, 56, 43, 0.2);
   margin: 12px 0 18px;
 }
 
 .cart-checkout-btn {
   width: 100%;
-  background: linear-gradient(135deg, #006871 0%, #004e55 100%);
+  background: var(--kopag-green, #0D382B);
   color: #ffffff;
-  border: 1.5px solid #59b6cd;
+  border: 1.5px solid var(--kopag-green, #0D382B);
   border-radius: 999px;
   padding: 15px 24px;
   font-size: 0.95rem;
@@ -6119,14 +6119,16 @@ button:active,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 6px 20px rgba(0, 104, 113, 0.35);
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.3);
   transition: all 0.22s ease;
 }
 
 .cart-checkout-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #00565e 0%, #003a3f 100%);
-  box-shadow: 0 8px 26px rgba(89, 182, 205, 0.45);
+  background: var(--kopag-yellow, #F9D342);
+  color: var(--kopag-green, #0D382B);
+  border-color: var(--kopag-yellow, #F9D342);
+  box-shadow: 0 10px 28px rgba(249, 211, 66, 0.4);
 }
 
 /* ==========================================================================
