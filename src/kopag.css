@@ -315,74 +315,378 @@
   color: #FFFFFF;
 }
 
-/* Mobile Drawer */
+/* ==========================================================================
+   MOBILE DRAWER (LUXURY EDITORIAL ROASTERY SLIDE-IN)
+   ========================================================================== */
 .kopag-mobile-drawer {
   position: fixed;
   inset: 0;
-  background: rgba(13, 56, 43, 0.6);
+  background: rgba(13, 56, 43, 0.65);
   backdrop-filter: blur(8px);
-  z-index: 1050;
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1200;
   display: flex;
   justify-content: flex-end;
+  animation: drawerFadeIn 0.22s ease-out;
+}
+
+@keyframes drawerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .kopag-mobile-drawer-box {
-  width: 85%;
-  max-width: 360px;
+  width: 88%;
+  max-width: 380px;
   height: 100%;
-  background: var(--kopag-cream);
-  padding: 24px;
+  background: #F8F5EE;
+  padding: 20px 18px max(20px, env(safe-area-inset-bottom)) 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+  box-shadow: -12px 0 36px rgba(0, 0, 0, 0.35);
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: drawerSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@keyframes drawerSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Drawer Header */
 .mobile-drawer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--kopag-cream-border);
-  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(13, 56, 43, 0.12);
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.mobile-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-seal-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-title-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .mobile-logo {
   font-family: var(--kopag-font-display);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--kopag-green);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.mobile-sub {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(13, 56, 43, 0.65);
+  margin-top: 3px;
+  text-transform: uppercase;
 }
 
 .mobile-close {
-  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(13, 56, 43, 0.08);
   border: none;
   color: var(--kopag-green);
   cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.mobile-close:active {
+  background: rgba(13, 56, 43, 0.18);
+  transform: scale(0.94);
+}
+
+/* Live Outlet Card inside Drawer */
+.mobile-drawer-outlet-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid rgba(13, 56, 43, 0.12);
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(13, 56, 43, 0.04);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+.mobile-drawer-outlet-card:active {
+  background: rgba(249, 211, 66, 0.15);
+  border-color: #F9D342;
+}
+
+.drawer-outlet-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.drawer-outlet-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  flex-shrink: 0;
+}
+
+.drawer-outlet-dot.pulse {
+  animation: pulseDot 2s infinite;
+}
+
+.drawer-outlet-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-outlet-name {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+  line-height: 1.2;
+}
+
+.drawer-outlet-meta {
+  font-size: 0.66rem;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.drawer-outlet-switch {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kopag-green);
+  background: rgba(13, 56, 43, 0.08);
+  padding: 4px 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+/* Drawer Links */
 .mobile-drawer-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 7px;
+  flex-grow: 1;
 }
 
-.mobile-drawer-links button {
-  text-align: left;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--kopag-green);
-  background: rgba(13, 56, 43, 0.05);
-  border: none;
+.drawer-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid rgba(13, 56, 43, 0.08);
   cursor: pointer;
+  transition: all 0.18s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
 }
 
-.mobile-drawer-links .mobile-cart-cta {
+.drawer-link-btn:active {
+  transform: scale(0.98);
+}
+
+.drawer-link-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-link-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.drawer-link-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.drawer-link-text .link-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+  line-height: 1.2;
+}
+
+.drawer-link-text .link-sub {
+  font-size: 0.66rem;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.drawer-chevron {
+  color: rgba(13, 56, 43, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* Active State for Drawer Link */
+.drawer-link-btn.is-active {
   background: var(--kopag-green);
-  color: #FFF;
+  border-color: var(--kopag-green);
+  box-shadow: 0 4px 14px rgba(13, 56, 43, 0.25);
+}
+
+.drawer-link-btn.is-active .drawer-link-icon-box {
+  background: #F9D342;
+  color: var(--kopag-green);
+}
+
+.drawer-link-btn.is-active .link-title {
+  color: #FFFFFF;
+}
+
+.drawer-link-btn.is-active .link-sub {
+  color: #F9D342;
+}
+
+.drawer-link-btn.is-active .drawer-chevron {
+  color: #F9D342;
+  transform: translateX(2px);
+}
+
+/* Quick Concierge Contact Row */
+.mobile-drawer-concierge-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
   margin-top: 14px;
-  text-align: center;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.drawer-concierge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.drawer-concierge-btn.wa {
+  background: rgba(37, 211, 102, 0.12);
+  color: #0E7C3C;
+  border: 1px solid rgba(37, 211, 102, 0.25);
+}
+
+.drawer-concierge-btn.wa:active {
+  background: #25D366;
+  color: #FFFFFF;
+}
+
+.drawer-concierge-btn.tel {
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green);
+  border: 1px solid rgba(13, 56, 43, 0.14);
+}
+
+.drawer-concierge-btn.tel:active {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+}
+
+/* Radiant Buttercup Yellow Cart CTA */
+.mobile-cart-cta-radiant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #F9D342;
+  color: var(--kopag-green);
+  border: 1px solid rgba(13, 56, 43, 0.15);
+  padding: 13px 18px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(249, 211, 66, 0.35);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-cart-cta-radiant:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(249, 211, 66, 0.25);
+}
+
+.cart-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.cart-cta-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count-bubble {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
 }
 
 /* 2. HERO SECTION */
@@ -2655,53 +2959,82 @@ html {
 }
 
 @media (max-width: 768px) {
-  /* 1. Header & Nav */
+  /* Prevent horizontal scroll & add safe-area spacing */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .kopag-theme-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .kopag-main-content {
+    padding-bottom: 95px; /* Leaves room for floating cart pill */
+  }
+
+  /* Prevent iOS Safari from zooming into form fields on focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* 1. Header & Floating Luxury Nav */
   .navbar-root-wrap {
-    top: 10px;
-    width: calc(100% - 24px);
-    padding: 8px 14px;
+    top: 8px;
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    padding: 8px 12px;
   }
   .navbar-root-wrap.is-scrolled {
-    top: 8px;
+    top: 6px;
   }
   .navbar-seal-icon {
     width: 30px;
     height: 30px;
   }
   .navbar-brand-title {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
   }
   .navbar-brand-sub {
-    font-size: 0.44rem;
+    display: none; /* Hide subtext on phone to keep brand title clean and spacious */
   }
   .navbar-primary-cta {
-    padding: 7px 14px;
-    font-size: 0.76rem;
+    padding: 6px 12px;
+    font-size: 0.74rem;
     border-radius: 9999px;
+    gap: 5px;
   }
   .navbar-mobile-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
     border-radius: 50%;
     background: rgba(13, 56, 43, 0.08);
+    border: 1px solid rgba(13, 56, 43, 0.12);
+    touch-action: manipulation;
   }
 
   /* 2. Hero Section */
   .kopag-hero-section {
-    padding-top: 85px;
-    padding-bottom: 40px;
+    padding-top: 82px;
+    padding-bottom: 36px;
+    overflow-x: hidden;
   }
   .kopag-hero-ticker-wrap {
-    padding: 6px 12px;
+    padding: 6px 10px;
     justify-content: flex-start;
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14px, #000 calc(100% - 14px), transparent 100%);
   }
   .kopag-hero-ticker-wrap::-webkit-scrollbar {
     display: none;
@@ -2710,51 +3043,54 @@ html {
     flex-wrap: nowrap;
     white-space: nowrap;
     gap: 8px;
+    padding: 0 4px;
   }
   .kopag-ticker-item {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     flex-shrink: 0;
   }
   .kopag-hero-monumental-title {
-    font-size: clamp(3.2rem, 15vw, 5.5rem);
+    font-size: clamp(2.4rem, 11.5vw, 4.2rem);
     letter-spacing: -0.02em;
-    line-height: 0.88;
-    margin: 6px 0 16px;
+    line-height: 0.92;
+    margin: 8px 0 16px;
+    word-break: normal;
   }
   .kopag-hero-stage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 22px;
-    padding: 0 16px;
+    gap: 20px;
+    padding: 0 14px;
   }
   .kopag-hero-center-media {
     order: 1;
     width: 100%;
-    max-width: 300px;
+    max-width: 270px;
   }
   .kopag-photo-frame {
-    max-width: 300px;
-    border-radius: 20px;
+    max-width: 270px;
+    border-radius: 18px;
   }
   .kopag-stamp-badge {
-    width: 76px;
-    height: 76px;
-    bottom: 20px;
+    width: 66px;
+    height: 66px;
+    bottom: 14px;
   }
   .kopag-hero-subcaption {
     font-size: 0.58rem;
     letter-spacing: 1px;
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .kopag-hero-left-col {
     order: 2;
     align-items: center;
     text-align: center;
     max-width: 480px;
+    width: 100%;
   }
   .kopag-hero-lead-text {
-    font-size: 0.94rem;
+    font-size: 0.92rem;
     line-height: 1.5;
     margin-bottom: 16px;
     text-align: center;
@@ -2765,59 +3101,61 @@ html {
     justify-content: center;
     padding: 12px 24px;
     font-size: 0.88rem;
+    touch-action: manipulation;
   }
   .kopag-hero-branch-pill {
-    margin: 12px auto 0;
-    font-size: 0.72rem;
-    padding: 6px 14px;
+    margin: 10px auto 0;
+    font-size: 0.70rem;
+    padding: 6px 12px;
     max-width: 90%;
     justify-content: center;
+    touch-action: manipulation;
   }
   .kopag-hero-right-col {
     order: 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
     max-width: 480px;
   }
   .kopag-hero-stat-card {
-    padding: 12px 14px;
-    border-radius: 14px;
+    padding: 10px 12px;
+    border-radius: 12px;
   }
   .kopag-hero-stat-card .stat-value {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
   .kopag-hero-stat-card .stat-sub {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
   }
 
   /* 3. Menu Section */
   .kopag-menu-section {
-    padding: 40px 0 60px;
+    padding: 34px 0 50px;
   }
   .kopag-menu-inner {
-    padding: 0 16px;
+    padding: 0 14px;
   }
   .kopag-menu-header-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
   }
   .kopag-menu-title {
-    font-size: clamp(2.4rem, 11vw, 3.8rem);
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
   }
   .kopag-menu-year {
-    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    font-size: clamp(1.3rem, 5.5vw, 2rem);
     opacity: 0.55;
   }
   .kopag-menu-toolbar {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .kopag-category-dropdown-wrap {
     width: 100%;
@@ -2825,18 +3163,25 @@ html {
   .kopag-dropdown-trigger-btn {
     width: 100%;
     min-width: 0;
+    min-height: 46px;
     justify-content: space-between;
-    padding: 10px 16px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    border-radius: 12px;
+    touch-action: manipulation;
   }
   .kopag-dropdown-menu {
     width: 100%;
     min-width: 0;
-    max-height: 320px;
+    max-height: 300px;
+    border-radius: 14px;
   }
   .kopag-search-field {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    min-height: 46px;
+    border-radius: 12px;
   }
   .kopag-quick-tabs {
     overflow-x: auto;
@@ -2846,6 +3191,8 @@ html {
     width: 100%;
     padding-bottom: 4px;
     gap: 6px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 10px, #000 calc(100% - 10px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10px, #000 calc(100% - 10px), transparent 100%);
   }
   .kopag-quick-tabs::-webkit-scrollbar {
     display: none;
@@ -2853,279 +3200,336 @@ html {
   .quick-btn {
     white-space: nowrap;
     flex-shrink: 0;
-    padding: 6px 12px;
+    padding: 7px 12px;
     font-size: 0.74rem;
+    min-height: 36px;
+    border-radius: 9999px;
+    touch-action: manipulation;
   }
 
   /* 4. Two-Column Clean Mobile Products Grid */
   .kopag-products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
   .kopag-card-sage-box {
-    border-radius: 14px;
-    aspect-ratio: 1 / 1.1;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1.05;
   }
   .kopag-card-badge {
-    top: 8px;
-    left: 8px;
-    font-size: 0.6rem;
-    padding: 3px 6px;
+    top: 6px;
+    left: 6px;
+    font-size: 0.58rem;
+    padding: 2px 6px;
+    border-radius: 6px;
   }
   .kopag-card-opt-tag {
-    top: 8px;
-    right: 8px;
-    font-size: 0.56rem;
-    padding: 3px 5px;
+    top: 6px;
+    right: 6px;
+    font-size: 0.54rem;
+    padding: 2px 5px;
+    border-radius: 6px;
   }
   .kopag-card-body {
-    padding-top: 10px;
+    padding-top: 8px;
   }
   .kopag-card-title {
-    font-size: 1.05rem;
-    line-height: 1.15;
+    font-size: 0.94rem;
+    line-height: 1.2;
     margin-bottom: 2px;
   }
   .kopag-card-desc {
-    font-size: 0.72rem;
-    line-height: 1.35;
+    font-size: 0.70rem;
+    line-height: 1.3;
     -webkit-line-clamp: 2;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .kopag-card-price-row {
-    padding: 4px 2px 0;
+    padding: 4px 0 0;
   }
   .kopag-price {
-    font-size: 0.96rem;
+    font-size: 0.92rem;
+    font-weight: 800;
   }
   .kopag-price .currency {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
   }
   .kopag-add-btn {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    gap: 3px;
+    padding: 5px 9px;
+    font-size: 0.68rem;
+    gap: 2px;
+    border-radius: 9999px;
+    touch-action: manipulation;
   }
 
   /* 5. Split Promotional Banner */
   .kopag-split-banner-section {
-    padding: 0 16px;
-    margin-bottom: 50px;
+    padding: 0 14px;
+    margin-bottom: 40px;
   }
   .kopag-split-inner {
     grid-template-columns: 1fr;
-    border-radius: 20px;
+    border-radius: 18px;
     min-height: auto;
   }
   .kopag-split-media-col {
-    height: 240px;
+    height: 200px;
   }
   .kopag-split-media-overlay {
-    padding: 20px;
+    padding: 16px;
   }
   .kopag-split-text-col {
-    padding: 28px 20px;
+    padding: 24px 18px;
   }
   .split-kicker {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   .split-display-statement {
-    font-size: 2.3rem;
+    font-size: 2rem;
     line-height: 0.95;
-    margin: 4px 0 12px;
+    margin: 4px 0 10px;
   }
   .split-manifesto-text {
-    font-size: 1.25rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    font-size: 1.15rem;
+    line-height: 1.25;
+    margin-bottom: 18px;
   }
   .split-stats-row {
-    gap: 16px;
-    padding-top: 14px;
+    gap: 12px;
+    padding-top: 12px;
   }
   .split-stat strong {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
   .split-watermark-art {
-    width: 180px;
-    height: 180px;
-    right: -20px;
-    bottom: -20px;
-    opacity: 0.12;
+    width: 150px;
+    height: 150px;
+    right: -15px;
+    bottom: -15px;
+    opacity: 0.10;
   }
 
   /* 6. Shops Gallery */
   .kopag-shops-section {
-    padding: 30px 0 50px;
+    padding: 26px 0 44px;
   }
   .kopag-shops-inner {
-    padding: 0 16px;
+    padding: 0 14px;
   }
   .kopag-shops-title {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
   }
   .kopag-shops-sub {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
   .kopag-shops-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
-    margin-top: 24px;
+    gap: 16px;
+    margin-top: 20px;
   }
   .kopag-shop-media-wrap {
     aspect-ratio: 16 / 10;
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .kopag-floating-circle-arrow {
-    width: 42px;
-    height: 42px;
-    top: 12px;
-    right: 12px;
+    width: 38px;
+    height: 38px;
+    top: 10px;
+    right: 10px;
   }
   .kopag-shop-name {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   /* About Section Mobile */
   .kopag-about-section {
-    padding: 40px 0 60px;
+    padding: 34px 0 50px;
   }
   .kopag-about-inner {
-    padding: 0 16px;
+    padding: 0 14px;
   }
   .kopag-about-title {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
   }
   .kopag-about-lead {
-    font-size: 0.94rem;
+    font-size: 0.90rem;
   }
   .about-secondary-media {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
   .about-actions-row {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
   .about-primary-btn,
   .about-secondary-btn {
     width: 100%;
     justify-content: center;
     text-align: center;
+    min-height: 46px;
+    touch-action: manipulation;
   }
   .kopag-about-stats-strip {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 20px 16px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 14px 12px !important;
+    border-radius: 16px;
   }
   .about-stat-item {
-    border-right: none;
-    border-bottom: 1px solid rgba(13, 56, 43, 0.1);
-    padding-bottom: 14px;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding: 12px 10px;
+    background: rgba(13, 56, 43, 0.04);
+    border-radius: 12px;
+    text-align: center;
   }
-  .about-stat-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+  .about-stat-item .stat-big-val {
+    font-size: 1.7rem;
+  }
+  .about-stat-item .stat-bold-label {
+    font-size: 0.82rem;
+  }
+  .about-stat-item .stat-sub-text {
+    font-size: 0.68rem;
   }
 
   /* Contact Section Mobile */
   .kopag-contact-section {
-    padding: 40px 0 60px;
+    padding: 34px 0 50px;
   }
   .kopag-contact-inner {
-    padding: 0 16px;
+    padding: 0 14px;
   }
   .kopag-contact-title {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
   }
   .kopag-contact-lead {
-    font-size: 0.94rem;
+    font-size: 0.90rem;
   }
   .form-row.dual {
     grid-template-columns: 1fr;
     gap: 0;
   }
   .contact-form-card {
-    padding: 24px 18px;
-    border-radius: 20px;
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+  .contact-input,
+  .contact-select,
+  .contact-textarea {
+    font-size: 16px !important;
+    padding: 11px 13px;
+    border-radius: 10px;
+  }
+  .contact-submit-btn {
+    min-height: 48px;
+    font-size: 0.92rem;
+    border-radius: 12px;
+    touch-action: manipulation;
+  }
+  .contact-whatsapp-btn {
+    min-height: 46px;
+    font-size: 0.86rem;
+    padding: 12px 14px;
+    border-radius: 12px;
+    touch-action: manipulation;
   }
   .touchpoint-meta-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
+  .touchpoint-link {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
+  }
 
   /* 7. FAQ Accordion */
   .kopag-faq-section {
-    padding: 40px 0 60px;
+    padding: 34px 0 50px;
   }
   .kopag-faq-inner {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 0 16px;
+    gap: 20px;
+    padding: 0 14px;
   }
   .kopag-faq-title {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
-    margin-bottom: 10px;
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
+    margin-bottom: 8px;
   }
   .kopag-faq-sub {
-    font-size: 0.9rem;
-    margin-bottom: 18px;
+    font-size: 0.88rem;
+    margin-bottom: 16px;
   }
   .kopag-faq-actions {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
   }
   .kopag-faq-cta,
   .kopag-faq-cta-sec {
     width: 100%;
     text-align: center;
     justify-content: center;
-    padding: 12px 20px;
+    padding: 12px 18px;
+    min-height: 46px;
+    touch-action: manipulation;
   }
   .kopag-accordion-question {
-    font-size: 0.98rem;
+    font-size: 0.94rem;
+    min-height: 46px;
+    padding: 14px 16px;
+    touch-action: manipulation;
   }
   .kopag-accordion-content {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
+    padding: 0 16px 14px;
   }
 
-  /* 8. Footer Section */
+  /* 8. Footer Section (Left Aligned on Mobile) */
   .kopag-footer-section {
-    padding: 40px 0 30px;
+    padding: 36px 0 26px;
   }
   .kopag-footer-inner {
-    padding: 0 16px;
+    padding: 0 14px;
   }
   .kopag-footer-huge-wordmark {
-    font-size: clamp(3.4rem, 17vw, 6.5rem);
+    font-size: clamp(2.8rem, 14vw, 5.2rem);
     text-align: left;
+    word-break: normal;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
   }
   .kopag-footer-hero-row {
     grid-template-columns: 1fr;
     text-align: left;
-    gap: 20px;
-    margin-bottom: 32px;
+    gap: 18px;
+    margin-bottom: 28px;
   }
   .kopag-footer-hero-actions {
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
   .kopag-yellow-pill-cta,
   .kopag-trans-pill-cta {
     width: 100%;
     max-width: 280px;
     justify-content: center;
-    padding: 12px 20px;
+    padding: 12px 18px;
+    min-height: 46px;
+    touch-action: manipulation;
   }
   .kopag-footer-columns-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 26px;
     text-align: left;
-    padding-bottom: 28px;
+    padding-bottom: 24px;
   }
   .kopag-col-label {
     text-align: left;
@@ -3133,11 +3537,16 @@ html {
   .kopag-col-links {
     align-items: flex-start;
     text-align: left;
+    gap: 8px;
   }
   .kopag-col-links li,
   .kopag-col-links a,
   .kopag-col-links button {
     text-align: left;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
   }
   .kopag-social-icons-row {
     justify-content: flex-start;
@@ -3146,24 +3555,27 @@ html {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    gap: 12px;
+    gap: 10px;
   }
   .kopag-footer-legal-links {
     justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   /* 9. Full-width Floating Cart Action Bar */
   .kopag-floating-cart-pill {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
+    left: 12px;
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
     justify-content: center;
-    padding: 14px 20px;
+    padding: 13px 18px;
     border-radius: 9999px;
-    font-size: 0.92rem;
-    box-shadow: 0 12px 32px rgba(13, 56, 43, 0.42);
+    font-size: 0.90rem;
+    box-shadow: 0 10px 28px rgba(13, 56, 43, 0.45);
+    z-index: 999;
+    touch-action: manipulation;
   }
 
   /* 10. Modals & Drawers Mobile Fit */
@@ -3183,20 +3595,31 @@ html {
 
 /* EXTRA NARROW PHONES (< 380px) */
 @media (max-width: 380px) {
+  .navbar-brand-title {
+    font-size: 1.20rem;
+  }
   .kopag-products-grid {
     gap: 8px !important;
   }
   .kopag-card-title {
-    font-size: 0.95rem;
+    font-size: 0.90rem;
   }
   .kopag-price {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
   .kopag-add-btn {
-    padding: 5px 8px;
-    font-size: 0.68rem;
+    padding: 5px 7px;
+    font-size: 0.65rem;
   }
-  .kopag-pill-btn.cart-btn span:first-of-type {
-    display: none;
+  .kopag-hero-monumental-title {
+    font-size: clamp(2.1rem, 11vw, 2.8rem);
+  }
+  .kopag-about-stats-strip {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+  .about-stat-item .stat-big-val {
+    font-size: 1.45rem;
   }
 }
