@@ -3851,4 +3851,597 @@ html {
   }
 }
 
+/* =========================================================================
+   KOPAG ARTISAN PRODUCT POPUP / CUSTOMIZATION MODAL (LUXURY RETRO-MODERN)
+   ========================================================================= */
+
+/* Backdrop overlay with luxury emerald dark blur */
+.kopag-product-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 36, 28, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  animation: kopagBackdropFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes kopagBackdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Dialog Frame */
+.kopag-product-dialog {
+  background: #FAF7F0 !important;
+  color: var(--kopag-green, #0D382B) !important;
+  border: 1.5px solid rgba(13, 56, 43, 0.2) !important;
+  border-radius: 24px !important;
+  width: 100% !important;
+  max-width: 540px !important;
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-shadow: 0 32px 75px -12px rgba(13, 56, 43, 0.45), 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+  animation: kopagModalScaleIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  padding: 0 !important;
+}
+
+@keyframes kopagModalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 1. Modal Hero Media */
+.kopag-product-media {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: #0D382B;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.kopag-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-product-dialog:hover .kopag-product-img {
+  transform: scale(1.04);
+}
+
+.kopag-product-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 56, 43, 0.35) 0%,
+    rgba(13, 56, 43, 0.1) 40%,
+    rgba(13, 56, 43, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+/* Media Top Bar: Badges + Close Button */
+.kopag-product-media-top {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 5;
+}
+
+.kopag-product-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kopag-badge-capsule {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.kopag-badge-capsule.category {
+  background: rgba(250, 247, 240, 0.92);
+  color: #0D382B;
+  border: 1px solid rgba(13, 56, 43, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.kopag-badge-capsule.highlight {
+  background: var(--kopag-yellow, #F9D342);
+  color: #0D382B;
+  box-shadow: 0 4px 12px rgba(249, 211, 66, 0.35);
+}
+
+.kopag-product-close-btn {
+  background: rgba(13, 56, 43, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-product-close-btn:hover {
+  background: var(--kopag-yellow, #F9D342);
+  color: #0D382B;
+  border-color: var(--kopag-yellow, #F9D342);
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* Floating Price Chip on Media Bottom */
+.kopag-product-price-chip {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  background: rgba(13, 56, 43, 0.9);
+  border: 1.5px solid rgba(249, 211, 66, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 4;
+}
+
+.kopag-product-price-chip .chip-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FAF7F0;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+.kopag-product-price-chip .chip-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--kopag-yellow, #F9D342);
+  font-family: var(--kopag-font-display, inherit);
+  letter-spacing: 0.5px;
+}
+
+/* 2. Scrollable Body Content */
+.kopag-product-content {
+  padding: 22px 26px 16px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(13, 56, 43, 0.3) transparent;
+}
+
+.kopag-product-content::-webkit-scrollbar {
+  width: 6px;
+}
+.kopag-product-content::-webkit-scrollbar-thumb {
+  background-color: rgba(13, 56, 43, 0.25);
+  border-radius: 10px;
+}
+
+/* Header Info */
+.kopag-product-header {
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px dashed rgba(13, 56, 43, 0.16);
+}
+
+.kopag-product-kicker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--kopag-green-muted, #3B6153);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kopag-product-title {
+  font-family: var(--kopag-font-display, 'Syne', sans-serif);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--kopag-green, #0D382B);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.kopag-product-desc {
+  font-size: 0.88rem;
+  color: var(--kopag-green-muted, #3B6153);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.kopag-product-features {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kopag-feature-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--kopag-green, #0D382B);
+  background: rgba(13, 56, 43, 0.07);
+  border: 1px solid rgba(13, 56, 43, 0.12);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+/* Options Sections */
+.kopag-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.kopag-option-section {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(13, 56, 43, 0.1);
+}
+
+.kopag-option-section.no-border {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.kopag-option-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.kopag-option-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--kopag-green, #0D382B);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.kopag-option-badge {
+  font-size: 0.70rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kopag-option-badge.required {
+  background: var(--kopag-yellow, #F9D342);
+  color: var(--kopag-green, #0D382B);
+}
+
+.kopag-option-badge.choice {
+  background: rgba(13, 56, 43, 0.12);
+  color: var(--kopag-green, #0D382B);
+}
+
+.kopag-option-badge.optional {
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green-muted, #3B6153);
+}
+
+/* Choice Cards Grid */
+.kopag-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kopag-choice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.14);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.kopag-choice-card:hover {
+  background: #F5F1E9;
+  border-color: rgba(13, 56, 43, 0.35);
+  transform: translateY(-1px);
+}
+
+.kopag-choice-card.is-selected {
+  background: rgba(13, 56, 43, 0.06);
+  border-color: var(--kopag-green, #0D382B);
+  box-shadow: 0 4px 14px rgba(13, 56, 43, 0.09);
+}
+
+.kopag-choice-card .choice-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Custom Radio Disc */
+.kopag-radio-disc {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(13, 56, 43, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background: #FFFFFF;
+}
+
+.kopag-radio-disc.active {
+  border-color: var(--kopag-green, #0D382B);
+  background: var(--kopag-green, #0D382B);
+}
+
+.kopag-radio-disc .disc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+/* Custom Checkbox */
+.kopag-check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid rgba(13, 56, 43, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.kopag-check-box.active {
+  background: var(--kopag-green, #0D382B);
+  border-color: var(--kopag-green, #0D382B);
+}
+
+.kopag-choice-card .choice-name {
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--kopag-green, #0D382B);
+}
+
+.kopag-choice-card.is-selected .choice-name {
+  font-weight: 750;
+}
+
+.kopag-choice-card .choice-price {
+  font-size: 0.84rem;
+  font-weight: 750;
+  color: var(--kopag-green-muted, #3B6153);
+}
+
+.kopag-choice-card.is-selected .choice-price {
+  color: var(--kopag-green, #0D382B);
+  font-weight: 800;
+}
+
+.kopag-choice-card .choice-price.is-free {
+  font-size: 0.75rem;
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green-muted, #3B6153);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+/* Special Instructions Textarea */
+.kopag-modal-textarea {
+  width: 100%;
+  height: 82px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.16);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-family: var(--kopag-font-body, inherit);
+  font-size: 0.86rem;
+  color: var(--kopag-green, #0D382B);
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.kopag-modal-textarea:focus {
+  border-color: var(--kopag-green, #0D382B);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(13, 56, 43, 0.12);
+}
+
+.kopag-modal-textarea::placeholder {
+  color: #8EA596;
+}
+
+/* 3. Sticky Action Footer */
+.kopag-modal-footer {
+  padding: 16px 24px;
+  background: #FAF7F0;
+  border-top: 1.5px solid rgba(13, 56, 43, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* Stepper Capsule */
+.kopag-stepper-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #F5F1E9;
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 9999px;
+  padding: 5px 10px;
+  flex-shrink: 0;
+}
+
+.kopag-stepper-btn {
+  background: none;
+  border: none;
+  color: var(--kopag-green, #0D382B);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.kopag-stepper-btn:hover:not(:disabled) {
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+}
+
+.kopag-stepper-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.kopag-stepper-qty {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--kopag-green, #0D382B);
+  min-width: 22px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Add To Order CTA Button */
+.kopag-modal-submit-btn {
+  flex: 1;
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+  border: 1.5px solid var(--kopag-green, #0D382B);
+  border-radius: 9999px;
+  padding: 12px 18px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-modal-submit-btn .submit-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kopag-modal-submit-btn .submit-total-pill {
+  background: var(--kopag-yellow, #F9D342);
+  color: var(--kopag-green, #0D382B);
+  font-size: 0.88rem;
+  font-weight: 850;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.4px;
+}
+
+.kopag-modal-submit-btn:hover {
+  background: var(--kopag-yellow, #F9D342);
+  color: var(--kopag-green, #0D382B);
+  border-color: var(--kopag-yellow, #F9D342);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(249, 211, 66, 0.4);
+}
+
+.kopag-modal-submit-btn:hover .submit-total-pill {
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+}
+
+/* Responsive adjust for mobile */
+@media (max-width: 600px) {
+  .kopag-product-dialog {
+    max-height: 92vh !important;
+    border-radius: 20px !important;
+  }
+  .kopag-product-media {
+    height: 200px;
+  }
+  .kopag-product-content {
+    padding: 18px 18px 14px;
+  }
+  .kopag-product-title {
+    font-size: 1.45rem;
+  }
+  .kopag-modal-footer {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .kopag-stepper-wrap {
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  .kopag-stepper-btn {
+    width: 26px;
+    height: 26px;
+  }
+  .kopag-modal-submit-btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  .kopag-modal-submit-btn .submit-total-pill {
+    padding: 3px 8px;
+    font-size: 0.80rem;
+  }
+}
+
 

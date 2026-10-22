@@ -36,10 +36,10 @@ export default function CheckoutModal({
       <div className="modal-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 540 }}>
         {!isOrdered ? (
           <>
-            <div style={{ padding: '20px 24px', background: '#006871', borderBottom: '1px solid rgba(89, 182, 205, 0.25)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
+            <div style={{ padding: '20px 24px', background: '#0D382B', borderBottom: '1px solid rgba(13, 56, 43, 0.25)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
               <div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>Checkout Order</h3>
-                <span style={{ fontSize: '0.82rem', color: '#bbf0fa', marginTop: 3, display: 'block' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', margin: 0, fontFamily: 'var(--kopag-font-display, inherit)' }}>Checkout Order</h3>
+                <span style={{ fontSize: '0.82rem', color: '#FAF7F0', opacity: 0.85, marginTop: 3, display: 'block' }}>
                   {orderType} from {selectedBranch.name}
                 </span>
               </div>
@@ -140,8 +140,8 @@ export default function CheckoutModal({
                       padding: '12px 16px',
                       borderRadius: 10,
                       border: '1.5px solid',
-                      borderColor: paymentMethod === 'cod' ? '#006871' : '#e2e8f0',
-                      backgroundColor: paymentMethod === 'cod' ? 'rgba(0,104,113,0.04)' : '#fff',
+                      borderColor: paymentMethod === 'cod' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
+                      backgroundColor: paymentMethod === 'cod' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
                       cursor: 'pointer'
                     }}
                   >
@@ -151,8 +151,8 @@ export default function CheckoutModal({
                       checked={paymentMethod === 'cod'}
                       onChange={() => setPaymentMethod('cod')}
                     />
-                    <Banknote size={20} color="#006871" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Cash on Delivery / Pick-Up</span>
+                    <Banknote size={20} color="#0D382B" />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Cash on Delivery / Pick-Up</span>
                   </label>
 
                   <label
@@ -163,8 +163,8 @@ export default function CheckoutModal({
                       padding: '12px 16px',
                       borderRadius: 10,
                       border: '1.5px solid',
-                      borderColor: paymentMethod === 'card' ? '#006871' : '#e2e8f0',
-                      backgroundColor: paymentMethod === 'card' ? 'rgba(0,104,113,0.04)' : '#fff',
+                      borderColor: paymentMethod === 'card' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
+                      backgroundColor: paymentMethod === 'card' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
                       cursor: 'pointer'
                     }}
                   >
@@ -174,8 +174,8 @@ export default function CheckoutModal({
                       checked={paymentMethod === 'card'}
                       onChange={() => setPaymentMethod('card')}
                     />
-                    <CreditCard size={20} color="#006871" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Credit / Debit Card (Online)</span>
+                    <CreditCard size={20} color="#0D382B" />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Credit / Debit Card (Online)</span>
                   </label>
 
                   <label
@@ -186,8 +186,8 @@ export default function CheckoutModal({
                       padding: '12px 16px',
                       borderRadius: 10,
                       border: '1.5px solid',
-                      borderColor: paymentMethod === 'wallet' ? '#006871' : '#e2e8f0',
-                      backgroundColor: paymentMethod === 'wallet' ? 'rgba(0,104,113,0.04)' : '#fff',
+                      borderColor: paymentMethod === 'wallet' ? '#0D382B' : 'rgba(13, 56, 43, 0.16)',
+                      backgroundColor: paymentMethod === 'wallet' ? 'rgba(13, 56, 43, 0.06)' : '#fff',
                       cursor: 'pointer'
                     }}
                   >
@@ -197,29 +197,29 @@ export default function CheckoutModal({
                       checked={paymentMethod === 'wallet'}
                       onChange={() => setPaymentMethod('wallet')}
                     />
-                    <Smartphone size={20} color="#006871" />
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Easypaisa / JazzCash</span>
+                    <Smartphone size={20} color="#0D382B" />
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0D382B' }}>Easypaisa / JazzCash</span>
                   </label>
                 </div>
               </div>
 
               {/* Order Summary & Submit */}
-              <div style={{ background: '#f8fafc', padding: 16, borderRadius: 12, marginBottom: 20 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#64748b', marginBottom: 6 }}>
+              <div style={{ background: '#FAF7F0', padding: 16, borderRadius: 12, marginBottom: 20, border: '1px solid rgba(13, 56, 43, 0.12)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 6 }}>
                   <span>Items Total ({cartItems.length})</span>
                   <span>Rs. {subtotal.toLocaleString()}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#64748b', marginBottom: 6 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 6 }}>
                   <span>Delivery / Handling</span>
                   <span>{orderType === 'Delivery' ? `Rs. ${deliveryFee}` : 'FREE'}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#64748b', marginBottom: 8 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#3B6153', marginBottom: 8 }}>
                   <span>Tax (5% GST)</span>
                   <span>Rs. {gst.toLocaleString()}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.05rem', fontWeight: 800, color: '#1e293b', borderTop: '1px dashed #cbd5e1', paddingTop: 8 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.05rem', fontWeight: 800, color: '#0D382B', borderTop: '1px dashed rgba(13, 56, 43, 0.16)', paddingTop: 8 }}>
                   <span>Total Amount</span>
-                  <span style={{ color: '#006871' }}>Rs. {grandTotal.toLocaleString()}</span>
+                  <span style={{ color: '#0D382B' }}>Rs. {grandTotal.toLocaleString()}</span>
                 </div>
               </div>
 
@@ -262,7 +262,7 @@ export default function CheckoutModal({
             <div style={{ background: '#f8fafc', padding: '16px', borderRadius: 12, border: '1px solid #e2e8f0', marginBottom: 24, textAlign: 'left' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                 <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Order Reference:</span>
-                <strong style={{ color: '#006871', fontSize: '0.95rem' }}>{orderId}</strong>
+                <strong style={{ color: '#0D382B', fontSize: '0.95rem' }}>{orderId}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                 <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Fulfillment:</span>
@@ -270,7 +270,7 @@ export default function CheckoutModal({
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                 <span style={{ color: '#64748b', fontSize: '0.85rem' }}>Estimated Time:</span>
-                <strong style={{ color: '#006871', fontSize: '0.85rem' }}>
+                <strong style={{ color: '#0D382B', fontSize: '0.85rem' }}>
                   {orderType === 'Delivery' ? selectedBranch.eta : '15 mins'}
                 </strong>
               </div>

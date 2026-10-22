@@ -26,7 +26,7 @@ export default function CartDrawer({
         {/* Header */}
         <div className="cart-drawer-header">
           <div className="cart-drawer-title">
-            <ShoppingBag size={22} color="#006871" />
+            <ShoppingBag size={22} color="#0D382B" />
             <span>Your Coffee Order</span>
             <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>
               ({cartItems.reduce((acc, i) => acc + i.quantity, 0)} items)
@@ -38,7 +38,7 @@ export default function CartDrawer({
         </div>
 
         {/* Branch Info Banner */}
-        <div style={{ background: '#f0fdfa', borderBottom: '1px solid #ccfbf1', padding: '10px 24px', fontSize: '0.82rem', color: '#0f766e', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ background: '#FAF7F0', borderBottom: '1px solid rgba(13, 56, 43, 0.12)', padding: '10px 24px', fontSize: '0.82rem', color: '#0D382B', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <MapPin size={15} />
           <span>Fulfilling from: <strong>{selectedBranch.name}</strong> ({orderType})</span>
         </div>
@@ -47,17 +47,17 @@ export default function CartDrawer({
         <div className="cart-drawer-items">
           {cartItems.length === 0 ? (
             <div className="cart-empty-state">
-              <div className="cart-empty-icon">
+              <div className="cart-empty-icon" style={{ background: 'rgba(13, 56, 43, 0.1)', color: '#0D382B' }}>
                 <ShoppingBag size={40} />
               </div>
-              <h3 style={{ fontSize: '1.2rem', color: '#1e293b', marginBottom: '8px' }}>Your Cart is Empty</h3>
-              <p style={{ fontSize: '0.88rem', maxWidth: '280px', marginBottom: '20px' }}>
+              <h3 style={{ fontSize: '1.2rem', color: '#0D382B', marginBottom: '8px', fontFamily: 'var(--kopag-font-display, inherit)' }}>Your Cart is Empty</h3>
+              <p style={{ fontSize: '0.88rem', maxWidth: '280px', marginBottom: '20px', color: '#3B6153' }}>
                 Explore our signature Spanish Lattes, cold brews, artisanal chocolates and frappes!
               </p>
               <button
                 className="hero-btn-primary"
                 onClick={onClose}
-                style={{ fontSize: '0.88rem', padding: '10px 20px' }}
+                style={{ fontSize: '0.88rem', padding: '10px 20px', background: '#0D382B', color: '#fff' }}
               >
                 Browse Menu
               </button>
@@ -83,7 +83,7 @@ export default function CartDrawer({
                     {item.milk && <span> • {item.milk}</span>}
                     {item.sugar && <span> • {item.sugar}</span>}
                     {item.addons && item.addons.length > 0 && (
-                      <div style={{ color: '#006871', marginTop: 2 }}>
+                      <div style={{ color: '#0D382B', fontWeight: 650, marginTop: 2 }}>
                         + {item.addons.join(', ')}
                       </div>
                     )}
@@ -95,7 +95,7 @@ export default function CartDrawer({
                   </div>
 
                   <div className="cart-item-price-row">
-                    <span className="cart-item-price">Rs. {item.totalPrice.toLocaleString()}</span>
+                    <span className="cart-item-price" style={{ color: '#0D382B' }}>Rs. {item.totalPrice.toLocaleString()}</span>
                     <div className="quantity-stepper" style={{ transform: 'scale(0.85)', transformOrigin: 'right center' }}>
                       <button
                         className="stepper-btn"
@@ -135,7 +135,7 @@ export default function CartDrawer({
             </div>
             <div className="bill-total-row">
               <span>Total Payable</span>
-              <span style={{ color: '#006871' }}>Rs. {grandTotal.toLocaleString()}</span>
+              <span style={{ color: '#0D382B' }}>Rs. {grandTotal.toLocaleString()}</span>
             </div>
 
             <button className="cart-checkout-btn" onClick={handleProceed}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Plus, Minus, Check, ShoppingBag } from 'lucide-react';
+import { X, Plus, Minus, Check, ShoppingBag, Sparkles } from 'lucide-react';
 import { milkOptions, sugarOptions, addOnOptions } from '../data/menuData';
 
 export default function ProductModal({ product, onClose, onAddToCart }) {
@@ -27,6 +27,18 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
     setQuantity(1);
   }, [product]);
 
+  // Close on Escape key press
+  useEffect(() => {
+    if (!product) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [product, onClose]);
+
   // Toggle addons
   const handleToggleAddon = (addon) => {
     if (selectedAddons.find((a) => a.id === addon.id)) {
@@ -40,8 +52,10 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
 
   // Calculate dynamic unit price
   const basePrice = selectedSize?.price || product.price || 0;
-  const milkExtra = (product.canCustomizeMilk !== false && selectedMilk) ? selectedMilk.extraPrice : 0;
-  const addonsTotal = selectedAddons.reduce((sum, item) => sum + item.price, 0);
+  const milkExtra = (product.canCustomizeMilk !== false && selectedMilk) 
+    ? (selectedMilk.price ?? selectedMilk.extraPrice ?? 0) 
+    : 0;
+  const addonsTotal = selectedAddons.reduce((sum, item) => sum + (item.price || 0), 0);
   const unitPrice = basePrice + milkExtra + addonsTotal;
   const totalPrice = unitPrice * quantity;
 
@@ -63,215 +77,247 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
   };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-        {/* Modal Image Header */}
-        <div className="modal-header-image">
-          <img src={product.image} alt={product.name} className="modal-header-img" />
-          <button className="modal-close-btn" onClick={onClose} title="Close">
-            <X size={20} />
-          </button>
-        </div>
+    <div className="modal-backdrop kopag-product-backdrop" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="modal-dialog kopag-product-dialog" onClick={(e) => e.stopPropagation()}>
+        {/* 1. Modal Hero Media Header */}
+        <div className="kopag-product-media">
+          <img src={product.image} alt={product.name} className="kopag-product-img" />
+          <div className="kopag-product-media-overlay" />
 
-        {/* Content */}
-        <div className="modal-content-pad">
-          <h2 className="modal-title">{product.name}</h2>
-          <p className="modal-desc">{product.description}</p>
-
-          {/* Size Selection */}
-          {product.sizes && product.sizes.length > 1 && (
-            <div className="modal-option-group">
-              <div className="modal-option-title">
-                <span>Select Size</span>
-                <span className="modal-option-subtitle">Required</span>
-              </div>
-              <div className="modal-radio-grid">
-                {product.sizes.map((size) => (
-                  <div
-                    key={size.name}
-                    className={`modal-radio-item ${selectedSize.name === size.name ? 'selected' : ''}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    <div className="modal-radio-label">
-                      <div
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          border: '2px solid #006871',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: selectedSize.name === size.name ? '#006871' : 'transparent'
-                        }}
-                      >
-                        {selectedSize.name === size.name && <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />}
-                      </div>
-                      <span>{size.name}</span>
-                    </div>
-                    <span className="modal-radio-price">Rs. {size.price.toLocaleString()}</span>
-                  </div>
-                ))}
-              </div>
+          {/* Top Floating Badges & Close Button */}
+          <div className="kopag-product-media-top">
+            <div className="kopag-product-badges">
+              <span className="kopag-badge-capsule category">
+                {product.categoryName || 'ARTISAN GULBERG'}
+              </span>
+              {product.badge && (
+                <span className="kopag-badge-capsule highlight">
+                  {product.badge}
+                </span>
+              )}
             </div>
-          )}
 
-          {/* Milk Customization */}
-          {product.canCustomizeMilk !== false && (
-            <div className="modal-option-group">
-              <div className="modal-option-title">
-                <span>Milk Options</span>
-                <span className="modal-option-subtitle">Choose 1</span>
-              </div>
-              <div className="modal-radio-grid">
-                {milkOptions.map((milk) => (
-                  <div
-                    key={milk.id}
-                    className={`modal-radio-item ${selectedMilk.id === milk.id ? 'selected' : ''}`}
-                    onClick={() => setSelectedMilk(milk)}
-                  >
-                    <div className="modal-radio-label">
-                      <div
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          border: '2px solid #006871',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: selectedMilk.id === milk.id ? '#006871' : 'transparent'
-                        }}
-                      >
-                        {selectedMilk.id === milk.id && <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />}
-                      </div>
-                      <span>{milk.name}</span>
-                    </div>
-                    <span className="modal-radio-price">
-                      {milk.extraPrice > 0 ? `+Rs. ${milk.extraPrice}` : 'Included'}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Sweetness Customization */}
-          {product.canCustomizeSugar !== false && (
-            <div className="modal-option-group">
-              <div className="modal-option-title">
-                <span>Sweetness Level</span>
-                <span className="modal-option-subtitle">Customize</span>
-              </div>
-              <div className="modal-radio-grid">
-                {sugarOptions.map((sugar) => (
-                  <div
-                    key={sugar.id}
-                    className={`modal-radio-item ${selectedSugar.id === sugar.id ? 'selected' : ''}`}
-                    onClick={() => setSelectedSugar(sugar)}
-                  >
-                    <div className="modal-radio-label">
-                      <div
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: '50%',
-                          border: '2px solid #006871',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: selectedSugar.id === sugar.id ? '#006871' : 'transparent'
-                        }}
-                      >
-                        {selectedSugar.id === sugar.id && <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />}
-                      </div>
-                      <span>{sugar.name}</span>
-                    </div>
-                    <span className="modal-radio-price">Free</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Add-ons */}
-          <div className="modal-option-group">
-            <div className="modal-option-title">
-              <span>Barista Add-ons & Flavors</span>
-              <span className="modal-option-subtitle">Optional</span>
-            </div>
-            <div className="modal-radio-grid">
-              {addOnOptions.map((addon) => {
-                const isChecked = Boolean(selectedAddons.find((a) => a.id === addon.id));
-                return (
-                  <div
-                    key={addon.id}
-                    className={`modal-radio-item ${isChecked ? 'selected' : ''}`}
-                    onClick={() => handleToggleAddon(addon)}
-                  >
-                    <div className="modal-radio-label">
-                      <div
-                        style={{
-                          width: 18,
-                          height: 18,
-                          borderRadius: 4,
-                          border: '2px solid #006871',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: isChecked ? '#006871' : 'transparent'
-                        }}
-                      >
-                        {isChecked && <Check size={12} color="#fff" />}
-                      </div>
-                      <span>{addon.name}</span>
-                    </div>
-                    <span className="modal-radio-price">+Rs. {addon.price}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Barista Notes */}
-          <div className="modal-option-group" style={{ borderBottom: 'none', marginBottom: 0 }}>
-            <div className="modal-option-title">
-              <span>Special Instructions for Barista</span>
-              <span className="modal-option-subtitle">Optional</span>
-            </div>
-            <textarea
-              className="modal-textarea"
-              placeholder="e.g. Extra hot, separate lid, less ice..."
-              value={specialInstructions}
-              onChange={(e) => setSpecialInstructions(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* Sticky Footer */}
-        <div className="modal-footer-sticky">
-          <div className="quantity-stepper">
             <button
-              className="stepper-btn"
+              className="kopag-product-close-btn"
+              onClick={onClose}
+              title="Close (Esc)"
+              aria-label="Close modal"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Floating Price Pill */}
+          <div className="kopag-product-price-chip">
+            <span className="chip-label">Unit Price</span>
+            <span className="chip-price">Rs. {unitPrice.toLocaleString()}</span>
+          </div>
+        </div>
+
+        {/* 2. Scrollable Body Content */}
+        <div className="kopag-product-content">
+          {/* Header Info */}
+          <div className="kopag-product-header">
+            <div className="kopag-product-kicker">
+              <Sparkles size={13} />
+              <span>ARTISAN COFFEE ROASTERS &middot; LAHORE</span>
+            </div>
+            <h2 className="kopag-product-title">{product.name}</h2>
+            {product.description && (
+              <p className="kopag-product-desc">{product.description}</p>
+            )}
+
+            {/* Feature Pills */}
+            <div className="kopag-product-features">
+              <span className="kopag-feature-tag">☕ Specialty Roast</span>
+              <span className="kopag-feature-tag">🌿 100% Arabica</span>
+              {product.hasVariation && <span className="kopag-feature-tag">✨ Made to Order</span>}
+            </div>
+          </div>
+
+          {/* Customization Options */}
+          <div className="kopag-options-container">
+            {/* Size Selection */}
+            {product.sizes && product.sizes.length > 1 && (
+              <div className="kopag-option-section">
+                <div className="kopag-option-header">
+                  <span className="kopag-option-title">Select Size</span>
+                  <span className="kopag-option-badge required">Required</span>
+                </div>
+                <div className="kopag-options-grid">
+                  {product.sizes.map((size) => {
+                    const isSelected = selectedSize.name === size.name;
+                    return (
+                      <div
+                        key={size.name}
+                        className={`kopag-choice-card ${isSelected ? 'is-selected' : ''}`}
+                        onClick={() => setSelectedSize(size)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="choice-left">
+                          <div className={`kopag-radio-disc ${isSelected ? 'active' : ''}`}>
+                            {isSelected && <div className="disc-dot" />}
+                          </div>
+                          <span className="choice-name">{size.name}</span>
+                        </div>
+                        <span className="choice-price">Rs. {size.price.toLocaleString()}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Milk Customization */}
+            {product.canCustomizeMilk !== false && (
+              <div className="kopag-option-section">
+                <div className="kopag-option-header">
+                  <span className="kopag-option-title">Milk Selection</span>
+                  <span className="kopag-option-badge choice">Choose 1</span>
+                </div>
+                <div className="kopag-options-grid">
+                  {milkOptions.map((milk) => {
+                    const isSelected = selectedMilk.id === milk.id;
+                    const extra = milk.price ?? milk.extraPrice ?? 0;
+                    return (
+                      <div
+                        key={milk.id}
+                        className={`kopag-choice-card ${isSelected ? 'is-selected' : ''}`}
+                        onClick={() => setSelectedMilk(milk)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="choice-left">
+                          <div className={`kopag-radio-disc ${isSelected ? 'active' : ''}`}>
+                            {isSelected && <div className="disc-dot" />}
+                          </div>
+                          <span className="choice-name">{milk.name}</span>
+                        </div>
+                        <span className={`choice-price ${extra === 0 ? 'is-free' : ''}`}>
+                          {extra > 0 ? `+Rs. ${extra}` : 'Included'}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Sweetness Customization */}
+            {product.canCustomizeSugar !== false && (
+              <div className="kopag-option-section">
+                <div className="kopag-option-header">
+                  <span className="kopag-option-title">Sweetness Level</span>
+                  <span className="kopag-option-badge optional">Customize</span>
+                </div>
+                <div className="kopag-options-grid">
+                  {sugarOptions.map((sugar) => {
+                    const isSelected = selectedSugar.id === sugar.id;
+                    return (
+                      <div
+                        key={sugar.id}
+                        className={`kopag-choice-card ${isSelected ? 'is-selected' : ''}`}
+                        onClick={() => setSelectedSugar(sugar)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="choice-left">
+                          <div className={`kopag-radio-disc ${isSelected ? 'active' : ''}`}>
+                            {isSelected && <div className="disc-dot" />}
+                          </div>
+                          <span className="choice-name">{sugar.name}</span>
+                        </div>
+                        <span className="choice-price is-free">Free</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Barista Add-ons */}
+            <div className="kopag-option-section">
+              <div className="kopag-option-header">
+                <span className="kopag-option-title">Barista Add-ons &amp; Syrups</span>
+                <span className="kopag-option-badge optional">Optional</span>
+              </div>
+              <div className="kopag-options-grid">
+                {addOnOptions.map((addon) => {
+                  const isChecked = Boolean(selectedAddons.find((a) => a.id === addon.id));
+                  return (
+                    <div
+                      key={addon.id}
+                      className={`kopag-choice-card ${isChecked ? 'is-selected' : ''}`}
+                      onClick={() => handleToggleAddon(addon)}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div className="choice-left">
+                        <div className={`kopag-check-box ${isChecked ? 'active' : ''}`}>
+                          {isChecked && <Check size={12} strokeWidth={3} />}
+                        </div>
+                        <span className="choice-name">{addon.name}</span>
+                      </div>
+                      <span className="choice-price">+Rs. {addon.price}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Barista Notes */}
+            <div className="kopag-option-section no-border">
+              <div className="kopag-option-header">
+                <span className="kopag-option-title">Special Barista Instructions</span>
+                <span className="kopag-option-badge optional">Optional</span>
+              </div>
+              <textarea
+                className="kopag-modal-textarea"
+                placeholder="e.g. Extra hot, separate lid, less ice, oat milk froth on side..."
+                value={specialInstructions}
+                onChange={(e) => setSpecialInstructions(e.target.value)}
+                rows={3}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 3. Sticky Action Footer */}
+        <div className="kopag-modal-footer">
+          <div className="kopag-stepper-wrap">
+            <button
+              type="button"
+              className="kopag-stepper-btn"
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               disabled={quantity <= 1}
+              aria-label="Decrease quantity"
             >
-              <Minus size={16} />
+              <Minus size={15} />
             </button>
-            <span className="stepper-value">{quantity}</span>
+            <span className="kopag-stepper-qty">{quantity}</span>
             <button
-              className="stepper-btn"
+              type="button"
+              className="kopag-stepper-btn"
               onClick={() => setQuantity(quantity + 1)}
+              aria-label="Increase quantity"
             >
-              <Plus size={16} />
+              <Plus size={15} />
             </button>
           </div>
 
-          <button className="modal-add-cart-submit" onClick={handleConfirm}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <ShoppingBag size={18} /> Add To Order
-            </span>
-            <span>Rs. {totalPrice.toLocaleString()}</span>
+          <button
+            type="button"
+            className="kopag-modal-submit-btn"
+            onClick={handleConfirm}
+          >
+            <div className="submit-label-wrap">
+              <ShoppingBag size={18} />
+              <span>Add To Order</span>
+            </div>
+            <div className="submit-total-pill">
+              <span>Rs. {totalPrice.toLocaleString()}</span>
+            </div>
           </button>
         </div>
       </div>
