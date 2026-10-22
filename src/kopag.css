@@ -3021,23 +3021,89 @@ html {
   transform: translateY(-3px);
 }
 
-.kopag-toast {
+/* =========================================================================
+   KOPAG LUXURY TOAST NOTIFICATION CAPSULE
+   ========================================================================= */
+.kopag-toast-capsule {
   position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  background: #FFFFFF;
-  color: var(--kopag-green);
-  border: 1.5px solid var(--kopag-green);
+  background: var(--kopag-green, #0D382B);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(249, 211, 66, 0.45);
   border-radius: 9999px;
-  padding: 10px 22px;
+  padding: 10px 22px 10px 12px;
+  font-family: var(--kopag-font-body, 'Plus Jakarta Sans', sans-serif);
   font-size: 0.88rem;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 16px 38px -6px rgba(13, 56, 43, 0.55), 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 3000;
+  white-space: nowrap;
+  max-width: calc(100vw - 32px);
+  pointer-events: none;
+  animation: kopagToastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
+}
+
+/* If floating cart bar is active, raise toast so it never overlaps */
+.kopag-toast-capsule.above-cart-bar {
+  bottom: 84px;
+}
+
+@keyframes kopagToastSlideUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 18px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.kopag-toast-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--kopag-yellow, #F9D342);
+  color: var(--kopag-green, #0D382B);
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  z-index: 1200;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(249, 211, 66, 0.35);
+}
+
+.kopag-toast-text {
+  color: #FFFFFF;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 600px) {
+  .kopag-toast-capsule {
+    padding: 9px 18px 9px 10px;
+    font-size: 0.82rem;
+    gap: 8px;
+    max-width: calc(100vw - 24px);
+  }
+  .kopag-toast-capsule.above-cart-bar {
+    bottom: 74px;
+  }
+  .kopag-toast-icon-wrap {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 /* =========================================================================

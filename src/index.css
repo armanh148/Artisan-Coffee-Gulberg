@@ -1479,25 +1479,27 @@ button {
 .toast-notice {
   position: fixed;
   bottom: 24px;
-  right: 24px;
-  background: #006871;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--kopag-green, #0D382B);
   color: #ffffff;
-  padding: 13px 22px;
-  border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(0, 104, 113, 0.35);
-  display: flex;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  box-shadow: 0 16px 38px -6px rgba(13, 56, 43, 0.55);
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  z-index: 2000;
-  border: 1.5px solid #59b6cd;
-  font-size: 0.9rem;
+  z-index: 3000;
+  border: 1.5px solid rgba(249, 211, 66, 0.45);
+  font-size: 0.88rem;
   font-weight: 700;
+  white-space: nowrap;
   animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes toastSlideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
 }
 
 /* Responsive */
@@ -4505,12 +4507,6 @@ button {
   /* Cart Drawer & Toast on mobile */
   .cart-drawer {
     max-width: 100vw;
-  }
-  .toast-notice {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    justify-content: center;
   }
 }
 

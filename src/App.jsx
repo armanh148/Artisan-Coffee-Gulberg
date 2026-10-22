@@ -291,9 +291,11 @@ export default function App() {
 
       {/* Toast Notice */}
       {toast && (
-        <div className="toast-notice kopag-toast">
-          <CheckCircle2 size={18} color="#0D382B" />
-          <span>{toast}</span>
+        <div className={`kopag-toast-capsule ${cartCount > 0 ? 'above-cart-bar' : ''}`}>
+          <div className="kopag-toast-icon-wrap">
+            <CheckCircle2 size={16} strokeWidth={2.8} />
+          </div>
+          <span className="kopag-toast-text">{toast}</span>
         </div>
       )}
     </div>
