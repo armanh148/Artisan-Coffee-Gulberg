@@ -5168,33 +5168,55 @@ html {
   color: #FFFFFF;
   border: 1.5px solid var(--kopag-green, #0D382B);
   border-radius: 9999px;
-  padding: 13px 20px;
-  font-size: 0.92rem;
+  padding: 11px 14px;
+  font-size: clamp(0.82rem, 2.6vw, 0.92rem);
   font-weight: 800;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   box-shadow: 0 8px 24px rgba(13, 56, 43, 0.32);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .kopag-checkout-cta-btn .cta-left {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.kopag-checkout-cta-btn .cta-left span {
+  white-space: nowrap;
+}
+
+.kopag-checkout-cta-btn .cta-left svg {
+  flex-shrink: 0;
 }
 
 .kopag-checkout-cta-btn .cta-price-pill {
   background: var(--kopag-yellow, #F9D342);
   color: var(--kopag-green, #0D382B);
-  font-size: 0.86rem;
+  font-size: clamp(0.78rem, 2.5vw, 0.86rem);
   font-weight: 850;
-  padding: 4px 12px;
+  padding: 5px 11px;
   border-radius: 9999px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.kopag-checkout-cta-btn .cta-price-pill span {
+  white-space: nowrap;
+}
+
+.kopag-checkout-cta-btn .cta-price-pill svg {
+  flex-shrink: 0;
 }
 
 .kopag-checkout-cta-btn:hover {
@@ -5209,6 +5231,7 @@ html {
   background: var(--kopag-green, #0D382B);
   color: #FFFFFF;
 }
+
 
 /* =========================================================================
    KOPAG LUXURY CHECKOUT MODAL (EDITORIAL RETRO-MODERN)
@@ -5583,33 +5606,55 @@ html {
   color: #FFFFFF;
   border: 1.5px solid var(--kopag-green, #0D382B);
   border-radius: 9999px;
-  padding: 13px 20px;
-  font-size: 0.92rem;
+  padding: 11px 14px;
+  font-size: clamp(0.82rem, 2.6vw, 0.92rem);
   font-weight: 800;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   box-shadow: 0 8px 24px rgba(13, 56, 43, 0.32);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .confirm-btn-left {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.confirm-btn-left span {
+  white-space: nowrap;
+}
+
+.confirm-btn-left svg {
+  flex-shrink: 0;
 }
 
 .confirm-btn-pill {
   background: var(--kopag-yellow, #F9D342);
   color: var(--kopag-green, #0D382B);
-  font-size: 0.86rem;
+  font-size: clamp(0.78rem, 2.5vw, 0.86rem);
   font-weight: 850;
-  padding: 4px 12px;
+  padding: 5px 11px;
   border-radius: 9999px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.confirm-btn-pill span {
+  white-space: nowrap;
+}
+
+.confirm-btn-pill svg {
+  flex-shrink: 0;
 }
 
 .kopag-order-confirm-btn:hover {
@@ -5624,6 +5669,27 @@ html {
   background: var(--kopag-green, #0D382B);
   color: #FFFFFF;
 }
+
+@media (max-width: 480px) {
+  .kopag-checkout-content {
+    padding: 16px 14px 18px;
+  }
+  .kopag-checkout-header {
+    padding: 16px 16px;
+  }
+  .kopag-order-confirm-btn {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .confirm-btn-left {
+    gap: 6px;
+  }
+  .confirm-btn-pill {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+}
+
 
 /* 3. Order Success State */
 .kopag-success-container {
