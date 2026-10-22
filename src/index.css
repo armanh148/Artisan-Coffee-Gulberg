@@ -3901,85 +3901,123 @@ button {
 }
 
 .taraq-modal-dialog {
-  background: #FAF6F0;
-  border-radius: 16px;
+  background: #FAF7F0;
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 24px;
   width: 100%;
-  max-width: 520px;
-  padding: 36px 32px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  max-width: 530px;
+  padding: 34px 30px;
+  box-shadow: 0 25px 60px rgba(9, 36, 28, 0.45);
   position: relative;
-  color: var(--taraq-dark);
+  color: var(--kopag-green, #0D382B);
+  box-sizing: border-box;
 }
 
 .taraq-modal-close {
   position: absolute;
   top: 18px;
   right: 18px;
-  background: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(13, 56, 43, 0.08);
   border: none;
   cursor: pointer;
-  color: #646866;
+  color: var(--kopag-green, #0D382B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.taraq-modal-close:hover {
+  background: #F9D342;
+  color: #0D382B;
+  transform: rotate(90deg);
+}
+
+.taraq-section-number {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kopag-green, #0D382B);
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+
+.number-sparkle {
+  color: #F9D342;
 }
 
 .taraq-modal-title {
-  font-family: var(--font-headline);
-  font-size: 2.2rem;
-  line-height: 1;
+  font-family: var(--kopag-font-display, 'Syne', sans-serif);
+  font-size: 1.85rem;
+  line-height: 1.1;
   margin-bottom: 6px;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--kopag-green, #0D382B);
+  letter-spacing: -0.02em;
 }
 
 .taraq-modal-sub {
-  font-size: 0.88rem;
-  color: #686C6A;
-  margin-bottom: 24px;
+  font-size: 0.86rem;
+  color: #64748B;
+  margin-bottom: 20px;
+  line-height: 1.4;
 }
 
 .taraq-form-row {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .taraq-form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 18px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .taraq-form-label {
   display: block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #555B58;
+  color: var(--kopag-green, #0D382B);
   margin-bottom: 6px;
 }
 
 .taraq-type-toggle {
   display: flex;
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 999px;
+  background: rgba(13, 56, 43, 0.08);
+  border-radius: 9999px;
   padding: 4px;
+  gap: 4px;
 }
 
 .taraq-type-toggle .type-btn {
   flex: 1;
-  padding: 8px 12px;
-  border-radius: 999px;
+  padding: 9px 14px;
+  border-radius: 9999px;
   border: none;
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.84rem;
+  font-weight: 800;
   background: none;
   cursor: pointer;
-  color: #686C6A;
+  color: var(--kopag-green, #0D382B);
+  opacity: 0.75;
   transition: all 0.2s ease;
 }
 
 .taraq-type-toggle .type-btn.active {
   background: #FFFFFF;
-  color: var(--taraq-dark);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--kopag-green, #0D382B);
+  opacity: 1;
+  box-shadow: 0 3px 10px rgba(13, 56, 43, 0.12);
 }
 
 .input-with-icon {
@@ -3991,7 +4029,8 @@ button {
 .input-with-icon svg {
   position: absolute;
   left: 14px;
-  color: #686C6A;
+  color: var(--kopag-green, #0D382B);
+  opacity: 0.7;
   pointer-events: none;
 }
 
@@ -3999,14 +4038,15 @@ button {
   width: 100%;
   height: 44px;
   padding: 0 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: #FFFFFF;
-  font-family: var(--font-body);
+  border-radius: 12px;
+  border: 1.5px solid rgba(13, 56, 43, 0.2);
+  background: #FAF9F6;
+  font-family: var(--kopag-font-body, inherit);
   font-size: 0.88rem;
-  color: var(--taraq-dark);
+  color: var(--kopag-green, #0D382B);
   outline: none;
   box-sizing: border-box;
+  transition: all 0.2s ease;
 }
 
 .input-with-icon .taraq-input {
@@ -4014,32 +4054,64 @@ button {
 }
 
 .taraq-input:focus {
-  border-color: var(--taraq-turquoise);
+  border-color: var(--kopag-green, #0D382B);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(13, 56, 43, 0.12);
 }
 
-.taraq-submit-btn {
+.taraq-submit-btn.kopag-reserve-confirm-btn {
   width: 100%;
   height: 48px;
-  background: var(--taraq-dark);
+  background: var(--kopag-green, #0D382B);
   color: #FFFFFF;
   border: none;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 700;
+  border-radius: 9999px;
+  font-size: 0.94rem;
+  font-weight: 800;
   cursor: pointer;
   margin-top: 10px;
-  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.32);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.taraq-submit-btn:hover {
-  background: #000000;
+.taraq-submit-btn.kopag-reserve-confirm-btn:hover {
+  background: #F9D342;
+  color: #0D382B;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(249, 211, 66, 0.4);
 }
 
 .taraq-modal-success {
   text-align: center;
   padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.reservation-code-pill {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 56, 43, 0.08);
+  border: 1px dashed rgba(13, 56, 43, 0.25);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.84rem;
+  color: var(--kopag-green, #0D382B);
+}
+
+.reservation-code-pill strong {
+  color: var(--kopag-green, #0D382B);
+  letter-spacing: 0.05em;
+  font-size: 0.92rem;
+}
+
 
 .success-title {
   font-family: var(--font-headline);
