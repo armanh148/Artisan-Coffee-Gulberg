@@ -60,7 +60,8 @@ export default function KopagNavbar({
     : 'Gulberg III Flagship';
 
   return (
-    <header className={`navbar-root-wrap ${scrolled ? 'is-scrolled' : ''}`}>
+    <>
+      <header className={`navbar-root-wrap ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="navbar-inner-container">
         {/* 1. Left: Brand Emblem + Typography Mark */}
         <div
@@ -403,6 +404,6 @@ export default function KopagNavbar({
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
