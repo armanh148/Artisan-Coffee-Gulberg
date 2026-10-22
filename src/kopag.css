@@ -1,0 +1,3085 @@
+/* =========================================================================
+   KOPAG EDITORIAL RETRO-MODERN DESIGN SYSTEM (MATCHING UPLOADED REFERENCE)
+   ========================================================================= */
+
+:root {
+  --kopag-cream: #F5F1E9;
+  --kopag-cream-light: #FAF7F0;
+  --kopag-cream-card: #FFFFFF;
+  --kopag-cream-border: rgba(13, 56, 43, 0.16);
+  --kopag-green: #0D382B;
+  --kopag-green-light: #164E3D;
+  --kopag-green-muted: #3B6153;
+  --kopag-yellow: #F9D342;
+  --kopag-yellow-hover: #E8C332;
+  --kopag-sage: #8EA596;
+  --kopag-sage-card: #95ABA0;
+  --kopag-font-display: 'Big Shoulders Display', 'Bebas Neue', 'Syne', sans-serif;
+  --kopag-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Base Wrapper */
+.kopag-theme-wrapper {
+  background-color: var(--kopag-cream);
+  min-height: 100vh;
+  color: var(--kopag-green);
+  font-family: var(--kopag-font-body);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 1. TOP NAVBAR (EDITORIAL RETRO-MODERN THEME STYLING) */
+.navbar-root-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(245, 241, 233, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1.5px solid rgba(13, 56, 43, 0.12);
+  padding: 14px 44px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-root-wrap.is-scrolled {
+  padding: 10px 44px;
+  background: rgba(245, 241, 233, 0.98);
+  box-shadow: 0 10px 30px rgba(13, 56, 43, 0.08);
+  border-bottom-color: rgba(13, 56, 43, 0.2);
+}
+
+.navbar-inner-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Left: Bold clean brand logo with sub-mark */
+.navbar-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.navbar-brand-col:hover {
+  transform: scale(1.02);
+}
+
+.navbar-brand-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--kopag-green);
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.navbar-brand-sub {
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--kopag-green-muted);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* Center: Floating White Rounded Capsule with Theme Navigation Links */
+.navbar-center-capsule {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 9999px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(13, 56, 43, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 1.5px solid rgba(13, 56, 43, 0.14);
+  transition: all 0.25s ease;
+}
+
+.navbar-center-capsule:hover {
+  box-shadow: 0 8px 26px rgba(13, 56, 43, 0.1);
+  border-color: rgba(13, 56, 43, 0.24);
+}
+
+.capsule-link {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--kopag-green);
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.capsule-link:hover {
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green);
+  transform: translateY(-1px);
+}
+
+/* Right: Secondary Action (Pill) + Signature Buttercup Yellow Primary Cart Pill */
+.navbar-right-col {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.navbar-secondary-btn {
+  background: transparent;
+  border: 1.5px solid rgba(13, 56, 43, 0.22);
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--kopag-green);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.navbar-secondary-btn:hover {
+  background: rgba(13, 56, 43, 0.08);
+  border-color: var(--kopag-green);
+  color: var(--kopag-green);
+  transform: translateY(-1px);
+}
+
+.navbar-primary-cta {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 9999px;
+  padding: 8px 22px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(249, 211, 66, 0.38);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-primary-cta:hover {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  border-color: var(--kopag-green);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.25);
+}
+
+.navbar-cart-badge {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 900;
+  border-radius: 9999px;
+  padding: 2px 7px;
+  line-height: 1;
+  transition: all 0.25s;
+}
+
+.navbar-primary-cta:hover .navbar-cart-badge {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+}
+
+.navbar-mobile-toggle {
+  display: none;
+  background: rgba(13, 56, 43, 0.06);
+  border: 1.5px solid rgba(13, 56, 43, 0.16);
+  border-radius: 50%;
+  color: var(--kopag-green);
+  cursor: pointer;
+  padding: 7px;
+  transition: all 0.2s ease;
+}
+
+.navbar-mobile-toggle:hover {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+}
+
+/* Mobile Drawer */
+.kopag-mobile-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 56, 43, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1050;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.kopag-mobile-drawer-box {
+  width: 85%;
+  max-width: 360px;
+  height: 100%;
+  background: var(--kopag-cream);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--kopag-cream-border);
+  margin-bottom: 20px;
+}
+
+.mobile-logo {
+  font-family: var(--kopag-font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+}
+
+.mobile-close {
+  background: none;
+  border: none;
+  color: var(--kopag-green);
+  cursor: pointer;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-drawer-links button {
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--kopag-green);
+  background: rgba(13, 56, 43, 0.05);
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-drawer-links .mobile-cart-cta {
+  background: var(--kopag-green);
+  color: #FFF;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* 2. HERO SECTION */
+.kopag-hero-section {
+  padding-top: 125px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.kopag-hero-ticker-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 16px;
+}
+
+.kopag-hero-ticker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.kopag-ticker-item {
+  background: none;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--kopag-green);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px 6px;
+}
+
+.kopag-ticker-item:hover {
+  color: var(--kopag-yellow-hover);
+}
+
+.kopag-ticker-dot {
+  color: var(--kopag-green);
+  opacity: 0.35;
+  font-size: 0.9rem;
+}
+
+/* Global Smooth Animations & Keyframes */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes kopagFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kopagFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes rotateStamp {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes watermarkBreathe {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.12;
+  }
+  100% {
+    transform: rotate(8deg) scale(1.08);
+    opacity: 0.22;
+  }
+}
+
+@keyframes kopagAccordionDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kopag-hero-headline-wrap {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.kopag-hero-monumental-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(4rem, 12vw, 10.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+  margin: 10px 0 20px;
+  user-select: none;
+  animation: kopagFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.kopag-hero-stage {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  align-items: center;
+  gap: 36px;
+}
+
+.kopag-hero-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.kopag-hero-lead-text {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--kopag-green);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.kopag-pill-cta {
+  background: var(--kopag-green);
+  color: #F5F1E9;
+  border-radius: 9999px;
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.22);
+}
+
+.kopag-pill-cta:hover {
+  background: #000;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+}
+
+.kopag-pill-cta .cta-arrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-pill-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+.kopag-hero-branch-pill {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(13, 56, 43, 0.08);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--kopag-green);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.kopag-hero-branch-pill:hover {
+  background: rgba(13, 56, 43, 0.15);
+}
+
+.kopag-hero-center-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kopag-photo-frame {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 3 / 3.9;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px rgba(13, 56, 43, 0.14);
+  background: #D8D2C4;
+  animation: kopagFloat 5.5s ease-in-out infinite alternate;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.kopag-photo-frame:hover {
+  box-shadow: 0 32px 64px rgba(13, 56, 43, 0.22);
+}
+
+.kopag-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-photo-frame:hover .kopag-hero-img {
+  transform: scale(1.05);
+}
+
+.kopag-stamp-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 105px;
+  height: 105px;
+  z-index: 10;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+
+.kopag-stamp-badge:hover {
+  transform: translateX(-50%) scale(1.12);
+  filter: drop-shadow(0 14px 26px rgba(0,0,0,0.3));
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateStamp 35s linear infinite;
+  transition: animation-duration 0.3s ease;
+}
+
+.kopag-stamp-badge:hover .stamp-svg {
+  animation-duration: 12s;
+}
+
+.kopag-hero-subcaption {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--kopag-green-muted);
+  text-align: center;
+  margin-top: 14px;
+}
+
+.kopag-hero-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kopag-hero-stat-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--kopag-cream-border);
+  border-radius: 18px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.kopag-hero-stat-card:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.08);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kopag-green-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--kopag-font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--kopag-green-muted);
+}
+
+/* 3. MENU SECTION: "Explore Our Menu" / "/2026" */
+.kopag-menu-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.kopag-menu-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kopag-menu-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  border-bottom: 2px solid rgba(13, 56, 43, 0.16);
+  padding-bottom: 16px;
+}
+
+.kopag-menu-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(3rem, 7.5vw, 6.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.kopag-menu-year {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(3rem, 7.5vw, 6.8rem);
+  font-weight: 900;
+  color: var(--kopag-green);
+  line-height: 0.88;
+}
+
+/* Category Dropdown Filter */
+.kopag-category-dropdown-wrap {
+  position: relative;
+  z-index: 50;
+}
+
+.kopag-dropdown-trigger-btn {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.25);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(13, 56, 43, 0.05);
+  min-width: 250px;
+}
+
+.kopag-dropdown-trigger-btn:hover {
+  border-color: var(--kopag-green);
+  box-shadow: 0 6px 18px rgba(13, 56, 43, 0.1);
+  transform: translateY(-1px);
+}
+
+.kopag-dropdown-trigger-btn.is-open {
+  border-color: var(--kopag-green);
+  background: var(--kopag-green);
+  color: #FFFFFF;
+}
+
+.kopag-dropdown-trigger-btn.is-open .dropdown-filter-icon,
+.kopag-dropdown-trigger-btn.is-open .dropdown-trigger-label,
+.kopag-dropdown-trigger-btn.is-open .dropdown-trigger-val,
+.kopag-dropdown-trigger-btn.is-open .dropdown-chevron {
+  color: #FFFFFF;
+}
+
+.dropdown-filter-icon {
+  color: var(--kopag-green);
+  flex-shrink: 0;
+}
+
+.dropdown-trigger-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-trigger-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kopag-green-muted);
+}
+
+.dropdown-trigger-val {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+  letter-spacing: 0.3px;
+}
+
+.dropdown-chevron {
+  color: var(--kopag-green);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.dropdown-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.kopag-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 310px;
+  max-height: 380px;
+  overflow-y: auto;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.18);
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 18px 40px rgba(13, 56, 43, 0.18);
+  animation: kopagAccordionDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
+
+.dropdown-menu-header {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kopag-green-muted);
+  padding: 8px 12px 6px;
+  border-bottom: 1px solid rgba(13, 56, 43, 0.1);
+  margin-bottom: 4px;
+}
+
+.kopag-dropdown-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: var(--kopag-green);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.kopag-dropdown-option:hover {
+  background: rgba(13, 56, 43, 0.08);
+  transform: translateX(3px);
+}
+
+.kopag-dropdown-option.selected {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+}
+
+.kopag-dropdown-option.selected .option-count {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.option-name {
+  flex: 1;
+}
+
+.option-count {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--kopag-green-muted);
+  margin-right: 8px;
+}
+
+.option-check {
+  color: #FFFFFF;
+}
+
+.kopag-menu-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.kopag-search-field {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+  min-width: 260px;
+}
+
+.kopag-search-field .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--kopag-green-muted);
+}
+
+.kopag-search-field .search-input {
+  width: 100%;
+  border: 1.5px solid rgba(13, 56, 43, 0.25);
+  border-radius: 9999px;
+  padding: 10px 38px 10px 42px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: #FFFFFF;
+  color: var(--kopag-green);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.kopag-search-field .search-input:focus {
+  border-color: var(--kopag-green);
+}
+
+.clear-search {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--kopag-green-muted);
+}
+
+.kopag-quick-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-btn {
+  background: #FFFFFF;
+  border: 1px solid var(--kopag-cream-border);
+  border-radius: 9999px;
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--kopag-green);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.quick-btn.active {
+  background: var(--kopag-green);
+  color: #FFF;
+  border-color: var(--kopag-green);
+}
+
+/* 5-Column Sage Rounded Containers Grid */
+.kopag-products-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+.kopag-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-card:hover {
+  transform: translateY(-8px);
+}
+
+.kopag-card-sage-box {
+  background-color: var(--kopag-sage);
+  border-radius: 18px;
+  aspect-ratio: 1 / 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.08);
+  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-card:hover .kopag-card-sage-box {
+  box-shadow: 0 20px 42px rgba(13, 56, 43, 0.16);
+}
+
+.kopag-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.kopag-card-opt-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  color: var(--kopag-green);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  z-index: 2;
+}
+
+.kopag-card-img-wrap {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.kopag-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-card:hover .kopag-card-img {
+  transform: scale(1.07);
+}
+
+.kopag-card-body {
+  padding-top: 16px;
+  text-align: center;
+}
+
+.kopag-card-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  letter-spacing: 0.3px;
+  margin-bottom: 3px;
+  line-height: 1.1;
+}
+
+.kopag-card-desc {
+  font-size: 0.78rem;
+  color: var(--kopag-green-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.kopag-card-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 0;
+  border-top: 1px dashed rgba(13, 56, 43, 0.16);
+}
+
+.kopag-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+}
+
+.kopag-price .currency {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--kopag-green-muted);
+}
+
+.kopag-add-btn {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kopag-add-btn:hover {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  transform: translateY(-1px);
+}
+
+.kopag-view-more-row {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.kopag-load-more-btn {
+  background: transparent;
+  border: 2px solid var(--kopag-green);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 12px 32px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.kopag-load-more-btn:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+.kopag-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  color: var(--kopag-green-muted);
+  margin-bottom: 12px;
+}
+
+/* 4. SPLIT PROMO BANNER ("USE THE BEST COFFEE") */
+.kopag-split-banner-section {
+  max-width: 1600px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+
+.kopag-split-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 480px;
+  box-shadow: 0 20px 45px rgba(13, 56, 43, 0.08);
+}
+
+.kopag-split-media-col {
+  position: relative;
+  overflow: hidden;
+}
+
+.kopag-split-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kopag-split-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.72) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 36px;
+}
+
+.split-overlay-card {
+  color: #FFFFFF;
+}
+
+.split-overlay-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.split-overlay-caption {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  color: #EAE6DB;
+}
+
+.kopag-split-cta-btn {
+  background: #FFFFFF;
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 10px 26px;
+  font-weight: 800;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.kopag-split-cta-btn:hover {
+  background: var(--kopag-yellow);
+  transform: translateY(-2px);
+}
+
+.kopag-split-text-col {
+  background-color: var(--kopag-yellow);
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--kopag-green);
+}
+
+.split-watermark-art {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 280px;
+  height: 280px;
+  pointer-events: none;
+}
+
+.watermark-svg {
+  width: 100%;
+  height: 100%;
+  animation: watermarkBreathe 14s ease-in-out infinite alternate;
+}
+
+.split-kicker {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.split-display-statement {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 900;
+  line-height: 0.92;
+  text-transform: uppercase;
+  margin: 4px 0 16px;
+}
+
+.split-manifesto-text {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+}
+
+.split-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 2px solid rgba(13, 56, 43, 0.2);
+  padding-top: 18px;
+}
+
+.split-stat strong {
+  display: block;
+  font-family: var(--kopag-font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.split-stat span {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--kopag-green-muted);
+}
+
+.split-stat-div {
+  width: 1px;
+  height: 32px;
+  background: rgba(13, 56, 43, 0.2);
+}
+
+/* 5. "VISIT SHOPS" SECTION */
+.kopag-shops-section {
+  padding: 40px 0 80px;
+  position: relative;
+}
+
+.kopag-shops-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kopag-shops-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+}
+
+.kopag-shops-sub {
+  font-size: 1rem;
+  color: var(--kopag-green-muted);
+  max-width: 650px;
+}
+
+.kopag-shops-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.kopag-shop-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-shop-card:hover {
+  transform: translateY(-8px);
+}
+
+.kopag-shop-media-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 12px 28px rgba(13, 56, 43, 0.08);
+  transition: box-shadow 0.35s ease;
+}
+
+.kopag-shop-card:hover .kopag-shop-media-wrap {
+  box-shadow: 0 22px 45px rgba(13, 56, 43, 0.18);
+}
+
+.kopag-shop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kopag-shop-card:hover .kopag-shop-img {
+  transform: scale(1.08);
+}
+
+.kopag-shop-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(13, 56, 43, 0.85);
+  backdrop-filter: blur(4px);
+  color: #FFF;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kopag-floating-circle-arrow {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--kopag-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.kopag-shop-card:hover .kopag-floating-circle-arrow {
+  transform: scale(1.15) rotate(45deg);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.28);
+}
+
+.kopag-shop-name {
+  font-family: var(--kopag-font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  margin-bottom: 4px;
+}
+
+.kopag-shop-address {
+  font-size: 0.8rem;
+  color: var(--kopag-green-muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.kopag-shop-time {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--kopag-green);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* =========================================================================
+   6. "THE ARTISAN STORY" (ABOUT SECTION)
+   ========================================================================= */
+.kopag-about-section {
+  padding: 80px 0 100px;
+  border-top: 1.5px solid rgba(13, 56, 43, 0.16);
+  position: relative;
+}
+
+.kopag-about-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kopag-about-header {
+  margin-bottom: 50px;
+}
+
+.about-kicker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.about-kicker-tag {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.about-kicker-sub {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--kopag-green-muted);
+  letter-spacing: 1px;
+}
+
+.about-title-row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 48px;
+  align-items: flex-end;
+}
+
+.kopag-about-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(3rem, 7.5vw, 6.2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.kopag-about-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--kopag-green-muted);
+  margin: 0;
+}
+
+.kopag-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.about-visual-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-photo-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  box-shadow: 0 16px 40px rgba(13, 56, 43, 0.12);
+}
+
+.about-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-photo-wrapper:hover .about-main-img {
+  transform: scale(1.04);
+}
+
+.about-floating-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(13, 56, 43, 0.1);
+}
+
+.about-floating-card .sparkle-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+.floating-card-text strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+}
+
+.floating-card-text span {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--kopag-green-muted);
+}
+
+.about-secondary-media {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.about-secondary-img-box {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3.4;
+  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.08);
+}
+
+.about-secondary-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-secondary-img-box:hover .about-secondary-img {
+  transform: scale(1.05);
+}
+
+.about-manifesto-box {
+  background: var(--kopag-sage);
+  border-radius: 20px;
+  padding: 24px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.08);
+}
+
+.manifesto-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.manifesto-quote {
+  font-family: var(--kopag-font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.manifesto-author {
+  font-size: 0.76rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.about-pillars-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-pillar-card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.14);
+  border-radius: 20px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(13, 56, 43, 0.04);
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(13, 56, 43, 0.1);
+  border-color: var(--kopag-green);
+}
+
+.pillar-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pillar-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--kopag-green-muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.pillar-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  margin: 0 0 4px;
+}
+
+.pillar-desc {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--kopag-green-muted);
+  margin: 0;
+}
+
+.about-actions-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.about-primary-btn {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  box-shadow: 0 6px 18px rgba(13, 56, 43, 0.2);
+}
+
+.about-primary-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.about-secondary-btn {
+  background: transparent;
+  border: 1.5px solid var(--kopag-green);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-weight: 800;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.about-secondary-btn:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+.kopag-about-stats-strip {
+  margin-top: 50px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.14);
+  border-radius: 22px;
+  padding: 28px 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  box-shadow: 0 10px 30px rgba(13, 56, 43, 0.05);
+}
+
+.about-stat-item {
+  text-align: center;
+  border-right: 1px solid rgba(13, 56, 43, 0.12);
+  padding: 0 14px;
+}
+
+.about-stat-item:last-child {
+  border-right: none;
+}
+
+.stat-big-val {
+  display: block;
+  font-family: var(--kopag-font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--kopag-green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-bold-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--kopag-green);
+  margin-bottom: 2px;
+}
+
+.stat-sub-text {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--kopag-green-muted);
+}
+
+/* =========================================================================
+   7. "CONNECT WITH US" (CONTACT SECTION)
+   ========================================================================= */
+.kopag-contact-section {
+  padding: 80px 0 100px;
+  border-top: 1.5px solid rgba(13, 56, 43, 0.16);
+  position: relative;
+}
+
+.kopag-contact-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kopag-contact-header {
+  margin-bottom: 44px;
+}
+
+.contact-tag-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-tag {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.contact-sub-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--kopag-green-muted);
+  letter-spacing: 1px;
+}
+
+.contact-title-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: flex-end;
+}
+
+.kopag-contact-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(3rem, 7.5vw, 6.2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.kopag-contact-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--kopag-green-muted);
+  margin: 0;
+}
+
+.kopag-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-touchpoint-card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.14);
+  border-radius: 20px;
+  padding: 22px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(13, 56, 43, 0.04);
+}
+
+.contact-touchpoint-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--kopag-green);
+  box-shadow: 0 10px 24px rgba(13, 56, 43, 0.09);
+}
+
+.contact-touchpoint-card.highlight {
+  background: rgba(249, 211, 66, 0.18);
+  border-color: rgba(249, 211, 66, 0.6);
+}
+
+.touchpoint-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.touchpoint-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(13, 56, 43, 0.08);
+  color: var(--kopag-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.touchpoint-icon-box.yellow {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+}
+
+.touchpoint-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  margin: 0 0 2px;
+}
+
+.touchpoint-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--kopag-green-muted);
+}
+
+.touchpoint-badge.dark {
+  color: var(--kopag-green);
+}
+
+.touchpoint-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--kopag-green-muted);
+  margin-bottom: 12px;
+}
+
+.touchpoint-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  border-top: 1px dashed rgba(13, 56, 43, 0.16);
+  padding-top: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--kopag-green);
+}
+
+.touchpoint-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.touchpoint-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--kopag-green);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.touchpoint-link:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.contact-whatsapp-btn {
+  background: #25D366;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 14px 22px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+  transition: all 0.25s;
+}
+
+.contact-whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.42);
+  filter: brightness(1.05);
+}
+
+.contact-form-card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(13, 56, 43, 0.16);
+  border-radius: 24px;
+  padding: 32px 36px;
+  box-shadow: 0 16px 40px rgba(13, 56, 43, 0.08);
+}
+
+.form-head {
+  margin-bottom: 24px;
+}
+
+.form-card-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  margin: 0 0 6px;
+}
+
+.form-card-subtitle {
+  font-size: 0.88rem;
+  color: var(--kopag-green-muted);
+  margin: 0;
+}
+
+.form-row.dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--kopag-green);
+}
+
+.contact-input,
+.contact-select,
+.contact-textarea {
+  width: 100%;
+  border: 1.5px solid rgba(13, 56, 43, 0.2);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-family: var(--kopag-font-body);
+  color: var(--kopag-green);
+  background: #FAF9F6;
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.contact-input:focus,
+.contact-select:focus,
+.contact-textarea:focus {
+  border-color: var(--kopag-green);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(13, 56, 43, 0.1);
+}
+
+.contact-submit-btn {
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(13, 56, 43, 0.25);
+  margin-top: 8px;
+}
+
+.contact-submit-btn:hover {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  transform: translateY(-2px);
+}
+
+.contact-success-state {
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.success-icon-box {
+  color: #10B981;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.success-title {
+  font-family: var(--kopag-font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  margin-bottom: 8px;
+}
+
+.success-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--kopag-green-muted);
+  margin-bottom: 24px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-reset-btn {
+  background: transparent;
+  border: 1.5px solid var(--kopag-green);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.contact-reset-btn:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+/* 8. "FREQUENTLY ASKED QUESTIONS" */
+.kopag-faq-section {
+  padding: 50px 0 90px;
+  border-top: 1.5px solid rgba(13, 56, 43, 0.16);
+}
+
+.kopag-faq-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 50px;
+}
+
+.kopag-faq-title {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.9;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.kopag-faq-sub {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--kopag-green-muted);
+  margin-bottom: 24px;
+}
+
+.kopag-faq-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.kopag-faq-cta {
+  background: var(--kopag-green);
+  color: #FFF;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.kopag-faq-cta:hover {
+  background: #000;
+}
+
+.kopag-faq-cta-sec {
+  background: transparent;
+  border: 1.5px solid var(--kopag-green);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.kopag-faq-cta-sec:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+.kopag-accordion-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.kopag-accordion-item {
+  border-bottom: 1.5px solid rgba(13, 56, 43, 0.16);
+  padding: 20px 0;
+  cursor: pointer;
+  transition: padding 0.25s ease, background 0.2s ease;
+}
+
+.kopag-accordion-item:hover {
+  padding-left: 10px;
+  background: rgba(13, 56, 43, 0.02);
+}
+
+.kopag-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.kopag-accordion-question {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--kopag-green);
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.kopag-accordion-item:hover .kopag-accordion-question {
+  color: #000;
+}
+
+.kopag-accordion-toggle {
+  color: var(--kopag-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(13, 56, 43, 0.08);
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
+}
+
+.kopag-accordion-item.is-open .kopag-accordion-toggle {
+  transform: rotate(90deg);
+  background: var(--kopag-yellow);
+}
+
+.kopag-accordion-content {
+  padding-top: 14px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--kopag-green-muted);
+  animation: kopagAccordionDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 7. FOOTER: MONUMENTAL "ARTISAN." WORDMARK */
+.kopag-footer-section {
+  background-color: var(--kopag-cream);
+  border-top: 2px solid rgba(13, 56, 43, 0.18);
+  padding: 80px 0 40px;
+}
+
+.kopag-footer-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.kopag-footer-hero-row {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.kopag-footer-huge-wordmark {
+  font-family: var(--kopag-font-display);
+  font-size: clamp(4.8rem, 15vw, 13rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--kopag-green);
+  line-height: 0.82;
+  letter-spacing: -0.025em;
+  margin: 0;
+  user-select: none;
+}
+
+.kopag-footer-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kopag-footer-mission {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--kopag-green-muted);
+}
+
+.kopag-footer-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kopag-yellow-pill-cta {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 6px 18px rgba(249, 211, 66, 0.35);
+}
+
+.kopag-yellow-pill-cta:hover {
+  background: #000;
+  color: #FFF;
+  transform: translateY(-2px);
+}
+
+.kopag-trans-pill-cta {
+  background: transparent;
+  border: 1.5px solid var(--kopag-green);
+  color: var(--kopag-green);
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.kopag-trans-pill-cta:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+.kopag-footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(13, 56, 43, 0.16);
+  margin: 30px 0;
+}
+
+.kopag-footer-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding-bottom: 40px;
+}
+
+.kopag-col-label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--kopag-green);
+  margin-bottom: 14px;
+}
+
+.kopag-col-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kopag-col-links li,
+.kopag-col-links a,
+.kopag-col-links button {
+  font-size: 0.84rem;
+  color: var(--kopag-green-muted);
+  line-height: 1.5;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.kopag-col-links a:hover,
+.kopag-col-links button:hover,
+.kopag-col-links .clickable-branch:hover {
+  color: var(--kopag-green);
+}
+
+.kopag-col-links .clickable-branch {
+  cursor: pointer;
+}
+
+.kopag-social-icons-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.kopag-social-icons-row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(13, 56, 43, 0.25);
+  color: var(--kopag-green);
+  transition: all 0.2s;
+}
+
+.kopag-social-icons-row a:hover {
+  background: var(--kopag-green);
+  color: #FFF;
+}
+
+.kopag-footer-bottom-row {
+  border-top: 1px solid rgba(13, 56, 43, 0.12);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: var(--kopag-green-muted);
+}
+
+.kopag-footer-legal-links {
+  display: flex;
+  gap: 16px;
+}
+
+.kopag-footer-legal-links button,
+.kopag-footer-legal-links span {
+  font-size: 0.8rem;
+  color: var(--kopag-green-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Quick Floating Cart Button */
+.kopag-floating-cart-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--kopag-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 24px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(13, 56, 43, 0.35);
+  cursor: pointer;
+  z-index: 990;
+  transition: all 0.25s ease;
+}
+
+.kopag-floating-cart-pill:hover {
+  background: var(--kopag-yellow);
+  color: var(--kopag-green);
+  transform: translateY(-3px);
+}
+
+.kopag-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  color: var(--kopag-green);
+  border: 1.5px solid var(--kopag-green);
+  border-radius: 9999px;
+  padding: 10px 22px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 1200;
+}
+
+/* =========================================================================
+   RESPONSIVE BREAKPOINTS & MOBILE-FIRST ENHANCEMENTS
+   ========================================================================= */
+
+@media (max-width: 1400px) {
+  .kopag-products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 1120px) {
+  .kopag-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .kopag-hero-stage {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 28px;
+  }
+  .kopag-hero-left-col {
+    align-items: center;
+  }
+  .kopag-shops-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .kopag-split-inner {
+    grid-template-columns: 1fr;
+  }
+  .kopag-faq-inner {
+    grid-template-columns: 1fr;
+  }
+  .about-title-row,
+  .contact-title-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .kopag-about-grid,
+  .kopag-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .kopag-about-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .about-stat-item:nth-child(2) {
+    border-right: none;
+  }
+  .contact-form-col {
+    position: static;
+  }
+  .kopag-footer-hero-row {
+    grid-template-columns: 1fr;
+  }
+  .kopag-footer-columns-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .kopag-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+/* TABLET & MOBILE (< 880px & < 768px) */
+@media (max-width: 1024px) {
+  .navbar-root-wrap {
+    padding: 14px 28px;
+  }
+  .navbar-center-capsule {
+    padding: 6px 18px;
+    gap: 16px;
+  }
+  .capsule-link {
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .navbar-center-capsule,
+  .navbar-secondary-btn {
+    display: none;
+  }
+  .navbar-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(13, 56, 43, 0.08);
+  }
+}
+
+@media (max-width: 768px) {
+  /* 1. Header & Nav */
+  .navbar-root-wrap {
+    padding: 12px 18px;
+  }
+  .navbar-root-wrap.is-scrolled {
+    padding: 10px 18px;
+  }
+  .navbar-brand-title {
+    font-size: 1.45rem;
+  }
+  .navbar-primary-cta {
+    padding: 7px 16px;
+    font-size: 0.8rem;
+    border-radius: 9999px;
+  }
+  .navbar-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(13, 56, 43, 0.08);
+  }
+
+  /* 2. Hero Section */
+  .kopag-hero-section {
+    padding-top: 85px;
+    padding-bottom: 40px;
+  }
+  .kopag-hero-ticker-wrap {
+    padding: 6px 12px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 6px;
+  }
+  .kopag-hero-ticker-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .kopag-hero-ticker {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 8px;
+  }
+  .kopag-ticker-item {
+    font-size: 0.74rem;
+    flex-shrink: 0;
+  }
+  .kopag-hero-monumental-title {
+    font-size: clamp(3.2rem, 15vw, 5.5rem);
+    letter-spacing: -0.02em;
+    line-height: 0.88;
+    margin: 6px 0 16px;
+  }
+  .kopag-hero-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 0 16px;
+  }
+  .kopag-hero-center-media {
+    order: 1;
+    width: 100%;
+    max-width: 300px;
+  }
+  .kopag-photo-frame {
+    max-width: 300px;
+    border-radius: 20px;
+  }
+  .kopag-stamp-badge {
+    width: 76px;
+    height: 76px;
+    bottom: 20px;
+  }
+  .kopag-hero-subcaption {
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    margin-top: 10px;
+  }
+  .kopag-hero-left-col {
+    order: 2;
+    align-items: center;
+    text-align: center;
+    max-width: 480px;
+  }
+  .kopag-hero-lead-text {
+    font-size: 0.94rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .kopag-pill-cta {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 0.88rem;
+  }
+  .kopag-hero-branch-pill {
+    margin: 12px auto 0;
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    max-width: 90%;
+    justify-content: center;
+  }
+  .kopag-hero-right-col {
+    order: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+  }
+  .kopag-hero-stat-card {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+  .kopag-hero-stat-card .stat-value {
+    font-size: 1.25rem;
+  }
+  .kopag-hero-stat-card .stat-sub {
+    font-size: 0.72rem;
+  }
+
+  /* 3. Menu Section */
+  .kopag-menu-section {
+    padding: 40px 0 60px;
+  }
+  .kopag-menu-inner {
+    padding: 0 16px;
+  }
+  .kopag-menu-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+  .kopag-menu-title {
+    font-size: clamp(2.4rem, 11vw, 3.8rem);
+  }
+  .kopag-menu-year {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    opacity: 0.55;
+  }
+  .kopag-menu-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .kopag-category-dropdown-wrap {
+    width: 100%;
+  }
+  .kopag-dropdown-trigger-btn {
+    width: 100%;
+    min-width: 0;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+  .kopag-dropdown-menu {
+    width: 100%;
+    min-width: 0;
+    max-height: 320px;
+  }
+  .kopag-search-field {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .kopag-quick-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-bottom: 4px;
+    gap: 6px;
+  }
+  .kopag-quick-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .quick-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+
+  /* 4. Two-Column Clean Mobile Products Grid */
+  .kopag-products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .kopag-card-sage-box {
+    border-radius: 14px;
+    aspect-ratio: 1 / 1.1;
+  }
+  .kopag-card-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+  .kopag-card-opt-tag {
+    top: 8px;
+    right: 8px;
+    font-size: 0.56rem;
+    padding: 3px 5px;
+  }
+  .kopag-card-body {
+    padding-top: 10px;
+  }
+  .kopag-card-title {
+    font-size: 1.05rem;
+    line-height: 1.15;
+    margin-bottom: 2px;
+  }
+  .kopag-card-desc {
+    font-size: 0.72rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+    margin-bottom: 8px;
+  }
+  .kopag-card-price-row {
+    padding: 4px 2px 0;
+  }
+  .kopag-price {
+    font-size: 0.96rem;
+  }
+  .kopag-price .currency {
+    font-size: 0.72rem;
+  }
+  .kopag-add-btn {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    gap: 3px;
+  }
+
+  /* 5. Split Promotional Banner */
+  .kopag-split-banner-section {
+    padding: 0 16px;
+    margin-bottom: 50px;
+  }
+  .kopag-split-inner {
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    min-height: auto;
+  }
+  .kopag-split-media-col {
+    height: 240px;
+  }
+  .kopag-split-media-overlay {
+    padding: 20px;
+  }
+  .kopag-split-text-col {
+    padding: 28px 20px;
+  }
+  .split-kicker {
+    font-size: 1.6rem;
+  }
+  .split-display-statement {
+    font-size: 2.3rem;
+    line-height: 0.95;
+    margin: 4px 0 12px;
+  }
+  .split-manifesto-text {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .split-stats-row {
+    gap: 16px;
+    padding-top: 14px;
+  }
+  .split-stat strong {
+    font-size: 1.45rem;
+  }
+  .split-watermark-art {
+    width: 180px;
+    height: 180px;
+    right: -20px;
+    bottom: -20px;
+    opacity: 0.12;
+  }
+
+  /* 6. Shops Gallery */
+  .kopag-shops-section {
+    padding: 30px 0 50px;
+  }
+  .kopag-shops-inner {
+    padding: 0 16px;
+  }
+  .kopag-shops-title {
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
+  }
+  .kopag-shops-sub {
+    font-size: 0.88rem;
+  }
+  .kopag-shops-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .kopag-shop-media-wrap {
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+  }
+  .kopag-floating-circle-arrow {
+    width: 42px;
+    height: 42px;
+    top: 12px;
+    right: 12px;
+  }
+  .kopag-shop-name {
+    font-size: 1.25rem;
+  }
+
+  /* About Section Mobile */
+  .kopag-about-section {
+    padding: 40px 0 60px;
+  }
+  .kopag-about-inner {
+    padding: 0 16px;
+  }
+  .kopag-about-title {
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
+  }
+  .kopag-about-lead {
+    font-size: 0.94rem;
+  }
+  .about-secondary-media {
+    grid-template-columns: 1fr;
+  }
+  .about-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .about-primary-btn,
+  .about-secondary-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .kopag-about-stats-strip {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px 16px;
+  }
+  .about-stat-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(13, 56, 43, 0.1);
+    padding-bottom: 14px;
+  }
+  .about-stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Contact Section Mobile */
+  .kopag-contact-section {
+    padding: 40px 0 60px;
+  }
+  .kopag-contact-inner {
+    padding: 0 16px;
+  }
+  .kopag-contact-title {
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
+  }
+  .kopag-contact-lead {
+    font-size: 0.94rem;
+  }
+  .form-row.dual {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .contact-form-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  .touchpoint-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* 7. FAQ Accordion */
+  .kopag-faq-section {
+    padding: 40px 0 60px;
+  }
+  .kopag-faq-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  .kopag-faq-title {
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    margin-bottom: 10px;
+  }
+  .kopag-faq-sub {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+  .kopag-faq-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .kopag-faq-cta,
+  .kopag-faq-cta-sec {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+  .kopag-accordion-question {
+    font-size: 0.98rem;
+  }
+  .kopag-accordion-content {
+    font-size: 0.88rem;
+  }
+
+  /* 8. Footer Section */
+  .kopag-footer-section {
+    padding: 40px 0 30px;
+  }
+  .kopag-footer-inner {
+    padding: 0 16px;
+  }
+  .kopag-footer-huge-wordmark {
+    font-size: clamp(3.4rem, 17vw, 6.5rem);
+    text-align: center;
+  }
+  .kopag-footer-hero-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .kopag-footer-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .kopag-yellow-pill-cta,
+  .kopag-trans-pill-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+  .kopag-footer-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+    padding-bottom: 28px;
+  }
+  .kopag-social-icons-row {
+    justify-content: center;
+  }
+  .kopag-footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .kopag-footer-legal-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* 9. Full-width Floating Cart Action Bar */
+  .kopag-floating-cart-pill {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    width: auto;
+    justify-content: center;
+    padding: 14px 20px;
+    border-radius: 9999px;
+    font-size: 0.92rem;
+    box-shadow: 0 12px 32px rgba(13, 56, 43, 0.42);
+  }
+
+  /* 10. Modals & Drawers Mobile Fit */
+  .modal-dialog,
+  .taraq-modal-dialog {
+    width: 95% !important;
+    max-width: 95% !important;
+    max-height: 88vh !important;
+    margin: 10px auto !important;
+    border-radius: 18px !important;
+  }
+  .cart-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* EXTRA NARROW PHONES (< 380px) */
+@media (max-width: 380px) {
+  .kopag-products-grid {
+    gap: 8px !important;
+  }
+  .kopag-card-title {
+    font-size: 0.95rem;
+  }
+  .kopag-price {
+    font-size: 0.88rem;
+  }
+  .kopag-add-btn {
+    padding: 5px 8px;
+    font-size: 0.68rem;
+  }
+  .kopag-pill-btn.cart-btn span:first-of-type {
+    display: none;
+  }
+}
