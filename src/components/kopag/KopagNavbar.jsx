@@ -382,25 +382,6 @@ export default function KopagNavbar({
                 <span>Call Roastery</span>
               </a>
             </div>
-
-            {/* Bottom Radiant Cart CTA Button */}
-            <button
-              type="button"
-              className="mobile-cart-cta-radiant"
-              onClick={() => {
-                if (onOpenCart) onOpenCart();
-                setMobileMenuOpen(false);
-              }}
-            >
-              <div className="cart-cta-left">
-                <ShoppingBag size={18} />
-                <span>View My Order</span>
-              </div>
-              <div className="cart-cta-right">
-                <span className="cart-count-bubble">{cartCount} items</span>
-                <ChevronRight size={16} />
-              </div>
-            </button>
           </div>
         </div>
       )}
