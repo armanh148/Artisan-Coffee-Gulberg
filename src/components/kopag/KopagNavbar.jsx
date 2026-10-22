@@ -186,11 +186,12 @@ export default function KopagNavbar({
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Luxury Editorial Mobile Slide-out Drawer */}
-      {mobileMenuOpen && (
-        <div className="kopag-mobile-drawer" onClick={() => setMobileMenuOpen(false)}>
-          <div className="kopag-mobile-drawer-box" onClick={(e) => e.stopPropagation()}>
+    {/* Luxury Editorial Mobile Slide-out Drawer */}
+    {mobileMenuOpen && (
+      <div className="kopag-mobile-drawer" onClick={() => setMobileMenuOpen(false)}>
+        <div className="kopag-mobile-drawer-box" onClick={(e) => e.stopPropagation()}>
             {/* Drawer Header */}
             <div className="mobile-drawer-header">
               <div className="mobile-brand-wrap">
